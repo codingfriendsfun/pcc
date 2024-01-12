@@ -17,11 +17,11 @@ Create a branch for yourself:
 
 For each chapter, create a directory. Easiest way to do so is to run:
 
-`mkdir ch1`
+`mkdir chapter_01`
 
 *The command mkdir is short for "make directory" and will create a directory with the name you specify.*
 
-For each exercise, create a file with the name of the exercise. You can do this by saving a file from the IDE, or by running (ex):
+For each exercise, create a file with the number of the exercise, unless the exercise specifies you name the file something specific. You can do this by saving a file from the IDE, or by running (ex):
 
 `touch 2-1.py`
 
