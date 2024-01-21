@@ -13,18 +13,18 @@ print() # printing a blank line for readability
 
 
 # reverse, destructive
-print(locations.reverse())
+locations.reverse()
 print(locations)
 # again to revert
-print(locations.reverse())
+locations.reverse()
 print(locations)
 
 print() # printing a blank line for readability
 
 
 # sort, destructive
-print(locations.sort())
+locations.sort()
 print(locations)
 # now reverse sort
-print(locations.sort(reverse=True))
+locations.sort(reverse=True)
 print(locations)
