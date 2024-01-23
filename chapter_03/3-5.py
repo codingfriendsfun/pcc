@@ -4,8 +4,9 @@ print(f"Dear {guests[0].title()}, you are invited dinner to talk about acting an
 print(f"Dear {guests[1].title()}, you are invited dinner to talk about acting and Shakespeare and stuff.")
 print(f"Dear {guests[2].title()}, you are invited dinner to talk about acting and Shakespeare and stuff.")
 #David Tennant cannot make it :(
-print(guests[1].title())
+print(f"{guests[1].title()} cannot attend.")
 guests [1] = 'sir ian mckellen'
+#invite guests again, replacing David with Sir Ian
 print(f"Dear {guests[0].title()}, you are invited dinner to talk about acting and Shakespeare and stuff.")
 print(f"Dear {guests[1].title()}, you are invited dinner to talk about acting and Shakespeare and stuff.")
 print(f"Dear {guests[2].title()}, you are invited dinner to talk about acting and Shakespeare and stuff.")
