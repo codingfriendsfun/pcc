@@ -1,23 +1,23 @@
-#list of places I'd like to visit
+#List places I'd like to visit
 places = ['Yellowstone National Park', 'Australia', "Edinburgh", "London", "Alaska"]
 print(places)
-#temp sort alphabetically
+#Temporarily sort alphabetically
 print(sorted(places))
-#prove it was temporary
+#Prove it was temporary
 print(places)
-#temp sort reverse alphabetically
-print(sorted(places, reverse=True))
-#prove it was temporary again
+#Temporarily sort reverse alphabetically
+print(sorted(places, reverse = True))
+#Prove it was temporary again
 print(places)
-#reverse the list
+#Reverse the list
 places.reverse()
 print(places)
-#reverse it back
+#Reverse it back
 places.reverse()
 print(places)
-#sort it alphabetically
+#Sort the list alphabetically
 places.sort()
 print(places)
-#sort it reverse alphabetically
-places.sort(reverse=True)
+#Sort the list reverse alphabetically
+places.sort(reverse = True)
 print(places)
