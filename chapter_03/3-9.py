@@ -17,4 +17,4 @@ print(f"Dear {guests[3].title()}, you are invited to dinner with even more peopl
 print(f"Dear {guests[4].title()}, you are invited to dinner with even more people to talk about acting and Shakespeare and stuff.")
 print(f"Dear {guests[5].title()}, you are invited to dinner with even more people to talk about acting and Shakespeare and stuff.")
 #Print the length of the list
-print(len(guests))
+print(f"Number of attendees: {len(guests)}")
