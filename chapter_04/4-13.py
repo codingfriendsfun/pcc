@@ -5,7 +5,7 @@ print("Restaurant menu:")
 for food in menu:
     print(food)
 
-#Try to modify the tuple to create an error, but placed into a comment so that I can run the rest of the program
+#Modify tuple to create error; in comment to run rest of program
 #menu[0] = 'schwarma'
 #Rewrite the tuple
 menu = ('salad', 'quesadillas', 'omlettes', 'fried rice', 'ice cream')
