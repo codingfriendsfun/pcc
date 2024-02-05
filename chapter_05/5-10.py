@@ -11,6 +11,5 @@ for user in new_users:
 for new_user in new_users:
     if new_user in current_users:
         print(f"The username {new_user} is taken. Please try a different username.")
-    #if I try to put the above line on two lines, it gives an "unterminated f-string literal" error
     else:
         print("That username is available!")
