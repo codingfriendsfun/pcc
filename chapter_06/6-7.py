@@ -8,7 +8,7 @@ mom  = {
 
 dad = {
     'first_name': 'dan',
-    'last name': 'bourquard',
+    'last_name': 'bourquard',
     'age': 64,
     'city': 'bow',
     }
@@ -23,5 +23,7 @@ me = {
 people = [mom, dad, me]
 
 for person in people:
-    for detail in person:
-        print(f"{detail}: {person[detail]}")
+    full_name = f"{person['first_name']} {person['last_name']}"
+    print(f"\nName: {full_name.title()}")
+    print(f"Age: {person['age']}")
+    print(f"City: {person['city'].title()}")
