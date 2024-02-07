@@ -1,5 +1,7 @@
 current_users = ['uSeR', 'ReSu', 'admin', 'name', 'eman']
 new_users = ['Kero', 'hens', 'AdMiN', 'nAMe', 'idfk']
+
+#make current users lowercase to compare
 current_users_lower = [user.lower() for user in current_users]
 
 for user in new_users:
