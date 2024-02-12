@@ -1,5 +1,5 @@
 numbers = [num for num in range(1, 10)]
-print(numbers)
+
 for num in numbers:
     if num == 1:
         print(f"{num}st")
