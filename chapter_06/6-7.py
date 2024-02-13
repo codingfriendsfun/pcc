@@ -23,4 +23,8 @@ kristin = {
 people = [ellie, elijah, kristin]
 
 for person in people:
-    print(person)
+    first = person['first']
+    last = person['last']
+    age = person['age']
+    town = person['town']
+    print(f"{first.title()} {last.title()} is {age} years old and from {town.title()}.")
