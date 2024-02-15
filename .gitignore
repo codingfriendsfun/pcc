@@ -1,3 +1,4 @@
+.gitignore
 chapter_05/cars.py
 chapter_05/toppings.py
 chapter_05/banned_users.py
