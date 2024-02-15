@@ -4,7 +4,8 @@ glossary = {
     'elif': 'if the first condition fails it checks for another condition',
     'else': 'if the other conditions fail it runs this',
     'for': 'does something for a time'
+    
 }
 
 for key, value in glossary.items():
-    print (f"\ncommand: {key.title()}, function: {value}")
+    print (f"\nFucntion: {key.title()}, function: {value}")

@@ -1,19 +1,28 @@
 antares = {
+   
+    'name': 'antares',
     'owner': 'noelle',
-    'job':'make sure she does the right things',
-    'age': 2
+    'job':'service dog',
+    'age': '2'
+    
 }
 
 chekov = {
+
+    'name':'chekov',
     'owner': 'larissa',
-    'job':'make sure she does not break herself',
-    'age': 3
+    'job':'service dog',
+    'age': '3'
+
 }
 
 sherlock = {
+   
+    'name':'sherlock',
     'owner': 'mom',
-    'job':'sleep and walk his humans',
+    'job':'sleep, human walker',
     'age': '6'
+
 }
 
 
@@ -21,4 +30,4 @@ pets = [antares, chekov, sherlock]
 
 for pet in pets:
    for key, value in pet.items():
-      print (f"\n{key.title()}: {value}") ##value won't accept title. How would I only do certain values? If statement?...
+      print (f"\n{key.title()}: {value.title()}") ##value should only title sometimes so this comes out weird
