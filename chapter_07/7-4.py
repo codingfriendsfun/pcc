@@ -3,8 +3,8 @@
 topping = ""
 
 while topping != 'quit':
+    topping = input("What topping would you like on your pizza? ")
     if topping == 'quit':
         break
     else:
-        topping = input("What topping would you like on your pizza? ")
         print(f"I'll add {topping} to your pizza.\n")
