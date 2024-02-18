@@ -1,4 +1,4 @@
-# 8-10. Sending Messages
+# 8-11. Archived Messages
 
 messages = [
     "On my way!",
