@@ -30,3 +30,8 @@ chapter_08/__pycache__/
 chapter_09/dog.py
 chapter_09/car.py
 chapter_09/electric_car.py
+chapter_09/__pycache__
+chapter_09/my_car.py
+chapter_09/my_electric_car.py
+chapter_09/9-8_alt.py
+chapter_09/my_cars.py
