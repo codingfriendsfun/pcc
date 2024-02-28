@@ -10,7 +10,8 @@ class Restaurant:
     def describe_restaurant(self):
         """Print a description for the information about the restaurant"""
         print(
-            f"{self.restaurant_name.title()} serves {self.cuisine_type.title()} food.")
+            f"{self.restaurant_name.title()} serves {self.cuisine_type.title()} food."
+        )
 
     def open_restaurant(self):
         """Print a statement simulating the restaurant opening."""
@@ -31,8 +32,10 @@ class Restaurant:
 
 restaurant = Restaurant("lucia's tavola", "italian")
 
-print(f"One of my favorite restaurants was an {restaurant.cuisine_type.title()}"
-      f" restaurant named {restaurant.restaurant_name.title()}.")
+print(
+    f"One of my favorite restaurants was an {restaurant.cuisine_type.title()}"
+    f" restaurant named {restaurant.restaurant_name.title()}."
+)
 
 # Print statements detailing the restaurant info and opening the restaurant.
 restaurant.describe_restaurant()
