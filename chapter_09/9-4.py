@@ -22,11 +22,19 @@ class Restaurant:
         print(f"We have now served {self.number_served} patrons today.")
 
     def set_number_served(self, patrons):
-        """Set the number of patrons served to a specific value."""
+        """Set the number of patrons served to a specific value.
+
+        :param patrons: 
+
+        """
         self.number_served = patrons
 
     def increment_number_served(self, people):
-        """Add the given number of people to patrons served."""
+        """Add the given number of people to patrons served.
+
+        :param people: 
+
+        """
         self.number_served += people
 
 
