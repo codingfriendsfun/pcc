@@ -42,8 +42,7 @@ restaurant = Restaurant("lucia's tavola", "italian")
 
 print(
     f"One of my favorite restaurants was an {restaurant.cuisine_type.title()}"
-    f" restaurant named {restaurant.restaurant_name.title()}."
-)
+    f" restaurant named {restaurant.restaurant_name.title()}.")
 
 # Print statements detailing the restaurant info and opening the restaurant.
 restaurant.describe_restaurant()
