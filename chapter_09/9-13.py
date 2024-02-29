@@ -1,6 +1,6 @@
 # 9-13. Dice
-
 from random import randint
+
 
 class Die:
     """Class for modeling dice with a given number of sides"""
@@ -23,4 +23,3 @@ for i in range(10):
     ten.roll_die()
     print("Twenty sided die rolled: ")
     twenty.roll_die()
-    
