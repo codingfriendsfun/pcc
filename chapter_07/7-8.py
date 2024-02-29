@@ -1,4 +1,4 @@
-sandwich_orders = ['tuna', 'meatball', 'reuben', 'italian', 'dogfish']
+sandwich_orders = ["tuna", "meatball", "reuben", "italian", "dogfish"]
 finished_sandwiches = []
 
 while sandwich_orders:
