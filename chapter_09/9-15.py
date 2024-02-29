@@ -22,6 +22,3 @@ while win == False:
     # else continue with next try
 
 print(f"It took {tries} tries to win.")
-
-
-
