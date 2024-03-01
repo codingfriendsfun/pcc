@@ -1,8 +1,7 @@
 def make_album(artist_name, artist_title, song_number=None):
     """Return dictionaries containing album info"""
-    album = {'name': artist_name, 'title': artist_title.title()}
-    if song_number:
-        album['song_number'] = song_number
+    album = {'name': artist_name, 'title': artist_title.title(), 
+        'song_number': song_number}
     return album
 
 #create albums using make_album()
@@ -15,7 +14,7 @@ bops_and_flops = [bop, flop, semi_bop]
 
 #pulls info from each dictionary inside the bops_and_flops list
 for album in bops_and_flops:
-    if len(album) == 2:
+    if not album['song_number']: # == None
         print(f"{album['name']} released {album['title']}.")
     else:
         print(f"{album['name']} released {album['title']} with " 
