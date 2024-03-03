@@ -2,11 +2,13 @@
 
 #function that prints messages stored in a list
 def show_messages(messages):
+    """Prints messages stored in a list."""
     for message in messages:
         print(message)
 
 #moves unsent messages to sent
 def send_messages(unsent_messages, sent_messages):
+    """Displays an unsent message and moves it to sent messages."""
     while unsent_messages:
         sending_message = unsent_messages.pop()
         print(sending_message)
