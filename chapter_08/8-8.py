@@ -1,8 +1,13 @@
 def make_album(artist_name, artist_title, song_number):
     """Return dictionaries containing album info"""
-    album = {'name': artist_name, 'title': artist_title.title(), song_number: song_number}
+    album = {
+        'name': artist_name, 
+        'title': artist_title.title(), 
+        song_number: song_number
+        }
     return album
 
+#takes user input to store the information of an album
 while True:
     print("\nTell me about your favorite album:")
     print("(Enter 'quit' at any time to quit)")
