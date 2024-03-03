@@ -1,4 +1,5 @@
 def show_messages(messages):
+    """Loop that prints each message in a list."""
     for message in messages:
         print(message)
 
