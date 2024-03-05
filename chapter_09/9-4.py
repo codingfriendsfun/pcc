@@ -17,15 +17,21 @@ class Restaurant:
         """The number of customers a restaurant has served."""
         print(f"This restaurant has served {self.number_served} customers.")
 
-    def update_customers_served(self, new_guests):
-        """Updates the number of customers served at a restuarant."""
-        self.number_served += new_guests
+    def set_number_served(self, new_guests):
+        """Set the number of customers served at a restuarant."""
 
+        self.number_served = new_guests
+
+    def incriment_number_served(self, guests):
+        """Adds new guests to the total number served at a restaurant."""
+        self.number_served += guests
 
 #Creating an instance of Restaurant()
 restaurant = Restaurant('Night Cafe', 'breakfast')
 
-#Updating customers served from 0 to 5
+#Updating customers served 
 restaurant.customers_served()
-restaurant.update_customers_served(5)
+restaurant.set_number_served(5)
+restaurant.customers_served()
+restaurant.incriment_number_served(50)
 restaurant.customers_served()
