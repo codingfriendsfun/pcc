@@ -1,6 +1,12 @@
 # model and manufacturer are required
 def car_details(model, manufacturer, **car_info):
-    """Build a dictionary containing details about a car"""
+    """Build a dictionary containing details about a car
+
+    :param model: 
+    :param manufacturer: 
+    :param **car_info: 
+
+    """
     car_info["model"] = model
     car_info["manufacturer"] = manufacturer
     return car_info
