@@ -1,5 +1,6 @@
 # Create a list of sandwich orders
-sandwich_orders = ["BLT", "Turkey Club", "Veggie Delight", "Pastrami", "Grilled Cheese"]
+sandwich_orders = ["BLT", "Turkey Club",
+                   "Veggie Delight", "Pastrami", "Grilled Cheese"]
 
 # Initialize an empty list for finished sandwiches
 finished_sandwiches = []
