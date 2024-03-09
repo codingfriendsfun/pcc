@@ -1,6 +1,8 @@
 from random import sample
 
 # Time to gamble with our class representing lottery draws
+
+
 class Lottery:
     """Model a lottery drawing."""
 
@@ -8,7 +10,6 @@ class Lottery:
         """Initialize lottery attributes."""
 
         self.lottery_ticket = lottery_ticket
-
 
     def user_ticket(self):
         """Prompt user to submit a lottery sequence."""
@@ -22,19 +23,18 @@ class Lottery:
             new_ticket = []
 
             get_ticket = input(ticket_prompt)
-            
+
             new_ticket += get_ticket
             submit_ticket += 1
 
         return new_ticket
- 
 
     def draw_ticket(self):
         """Draw a lottery ticket, run until users ticket wins."""
-        
+
         options = [[num for num in range(1, 10)], 'a', 'c', 'b', 'd', 'f']
         draw_ticket = sample(options, 4)
-        
+
         if self.lottery_ticket == draw_ticket:
             print("Congrats! You win!")
 
@@ -50,4 +50,3 @@ my_ticket.user_ticket()
 
 # Draw winning ticket and see if you won.
 my_ticket.draw_ticket()
-
