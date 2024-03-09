@@ -1,4 +1,4 @@
-from admin import User, Admin
+from user_and_admin import User, Admin
 
 #creating instances of Admin() and User() from admin.py
 user_1 = Admin('gandalf', 'the grey', 
