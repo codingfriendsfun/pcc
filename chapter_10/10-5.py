@@ -19,7 +19,7 @@ guests = ''
 
 # Add guest names to variable as a string
 for guest in guest_book:
-    guests += f"{guest} "
+    guests += f"{guest}, "
     
 # Write to file
 path.write_text(guests)
