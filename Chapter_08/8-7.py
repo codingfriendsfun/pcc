@@ -8,8 +8,8 @@ def make_album(artist_name, album_title, songs=None):
         album['songs'] = songs
     return album
 
-album = make_album('Boris Slavov', "Baldur's Gate 3 Original Soundtrack",)
-print(album)
+print(make_album('Boris Slavov', "Baldur's Gate 3 Original Soundtrack",))
+
 
 album = make_album('Olivia Rodrigo', 'guts', 12)
 print(album)
