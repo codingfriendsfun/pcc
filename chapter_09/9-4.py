@@ -10,7 +10,7 @@ class Restaurant:
     def describe_restaurant(self):
         """Print a description for the information about the restaurant"""
         print(
-            f"{self.restaurant_name.title()} serves {self.cuisine_type.title()} food."
+            f"{self.restaurant_name.title()} serves {self.cuisine_type.title()}."
         )
 
     def open_restaurant(self):
@@ -18,7 +18,7 @@ class Restaurant:
         print(f"{self.restaurant_name.title()} is now open!")
 
     def patrons_served(self):
-        """Print a statement for the number of patrons the restaurant has served."""
+        """Print statement for amount of patrons served."""
         print(f"We have now served {self.number_served} patrons today.")
 
     def set_number_served(self, patrons):
@@ -41,7 +41,7 @@ class Restaurant:
 restaurant = Restaurant("lucia's tavola", "italian")
 
 print(
-    f"One of my favorite restaurants was an {restaurant.cuisine_type.title()}"
+    f"A favorite restaurants of mine was an {restaurant.cuisine_type.title()}"
     f" restaurant named {restaurant.restaurant_name.title()}.")
 
 # Print statements detailing the restaurant info and opening the restaurant.
