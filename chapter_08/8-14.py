@@ -17,7 +17,7 @@ def store_car_info(manufacturer, model, **features):
 
 # Example usage
 my_car = store_car_info(manufacturer='Chevy', model='Volt', color='Blue',
-                         Bonus=['Bose Stereo', 'Navigation'])
+                        Bonus=['Bose Stereo', 'Navigation'])
 
 # Print the stored car information
 print("Car Information:")
