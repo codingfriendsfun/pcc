@@ -1,4 +1,10 @@
 def make_shirt(size="large", text="I love Python."):
+    """
+
+    :param size:  (Default value = "large")
+    :param text:  (Default value = "I love Python.")
+
+    """
     print(f"printing a {size} with {text} printed on it")
 
 
