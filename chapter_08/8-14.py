@@ -5,7 +5,7 @@ def store_car_info(manufacturer, model, **features):
     :type manufacturer: str
     :param model: The car's model name.
     :type model: str
-    :param **features: 
+    :param **features:
     :returns: A dictionary containing car information.
     :rtype: dict
 
