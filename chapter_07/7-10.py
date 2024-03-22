@@ -1,10 +1,10 @@
 responded = {}
 polling_active = True
 
-
 while polling_active:
     name = input("\nWhat is your name? ")
-    response = input("If you could visit one place on earth where would you go? ")
+    response = input(
+        "If you could visit one place on earth where would you go? ")
 
     responded[name] = response
 

@@ -6,7 +6,11 @@ def make_album(artist, album, songs=1):
     :param songs:  (Default value = 1)
 
     """
-    new_Album = {"Artist": artist.title(), "Album": album.title(), "Songs": songs}
+    new_Album = {
+        "Artist": artist.title(),
+        "Album": album.title(),
+        "Songs": songs
+    }
     return new_Album
 
 

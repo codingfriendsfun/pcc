@@ -21,7 +21,6 @@ else:
 # Initialize an empty list for finished sandwiches
 finished_sandwiches = []
 
-
 # Loop through each sandwich order
 while sandwich_orders:
     current_sandwich = sandwich_orders.pop(0)  # Get the first sandwich order

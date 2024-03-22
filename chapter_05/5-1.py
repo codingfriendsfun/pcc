@@ -4,7 +4,6 @@ dragonWings = True
 dragonFire = "Fire"
 dragonFriend = True
 
-
 print("is the dragon red? I think it is...")
 print(dragonColor.lower() == "red")
 

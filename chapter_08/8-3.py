@@ -18,5 +18,4 @@ while isActive == True:
     if goAgain == "no":
         break
 
-
 make_shirt(size="large", text="I love python")

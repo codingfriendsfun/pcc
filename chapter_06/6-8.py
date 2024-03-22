@@ -1,6 +1,16 @@
-antares = {"name": "antares", "owner": "noelle", "job": "service dog", "age": "2"}
+antares = {
+    "name": "antares",
+    "owner": "noelle",
+    "job": "service dog",
+    "age": "2"
+}
 
-chekov = {"name": "chekov", "owner": "larissa", "job": "service dog", "age": "3"}
+chekov = {
+    "name": "chekov",
+    "owner": "larissa",
+    "job": "service dog",
+    "age": "3"
+}
 
 sherlock = {
     "name": "sherlock",
@@ -8,7 +18,6 @@ sherlock = {
     "job": "sleep, human walker",
     "age": "6",
 }
-
 
 pets = [antares, chekov, sherlock]
 
