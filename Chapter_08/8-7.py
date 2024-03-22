@@ -1,5 +1,11 @@
 def make_album(artist_name, album_title, songs=None):
-    """Stores album information in a dictionary"""
+    """Stores album information in a dictionary
+
+    :param artist_name: 
+    :param album_title: 
+    :param songs:  (Default value = None)
+
+    """
 
     album = {
         "arist": artist_name,
