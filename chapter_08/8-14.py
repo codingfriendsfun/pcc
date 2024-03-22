@@ -10,14 +10,18 @@ def store_car_info(manufacturer, model, **features):
     Returns:
         dict: A dictionary containing car information.
     """
-    features['manufacturer'] = manufacturer
-    features['model'] = model
+    features["manufacturer"] = manufacturer
+    features["model"] = model
     return features
 
 
 # Example usage
-my_car = store_car_info(manufacturer='Chevy', model='Volt', color='Blue',
-                        Bonus=['Bose Stereo', 'Navigation'])
+my_car = store_car_info(
+    manufacturer="Chevy",
+    model="Volt",
+    color="Blue",
+    Bonus=["Bose Stereo", "Navigation"],
+)
 
 # Print the stored car information
 print("Car Information:")
