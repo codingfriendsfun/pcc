@@ -9,28 +9,40 @@ class Restaurant:
 
     def describe_restaurant(self):
         """Print a description for the information about the restaurant"""
-        print(f"{self.restaurant_name.title()} serves {self.cuisine_type.title()} food.")
+        print(
+            f"{self.restaurant_name.title()} serves {self.cuisine_type.title()}."
+        )
 
     def open_restaurant(self):
         """Print a statement simulating the restaurant opening."""
         print(f"{self.restaurant_name.title()} is now open!")
 
     def patrons_served(self):
-        """Print a statement for the number of patrons the restaurant has served."""
+        """Print statement for amount of patrons served."""
         print(f"We have now served {self.number_served} patrons today.")
 
     def set_number_served(self, patrons):
-        """Set the number of patrons served to a specific value."""
+        """Set the number of patrons served to a specific value.
+
+        :param patrons:
+
+        """
         self.number_served = patrons
 
     def increment_number_served(self, people):
-        """Add the given number of people to patrons served."""
+        """Add the given number of people to patrons served.
+
+        :param people:
+
+        """
         self.number_served += people
+
 
 restaurant = Restaurant("lucia's tavola", "italian")
 
-print(f"One of my favorite restaurants was an {restaurant.cuisine_type.title()}"
-      f" restaurant named {restaurant.restaurant_name.title()}.")
+print(
+    f"A favorite restaurants of mine was an {restaurant.cuisine_type.title()}"
+    f" restaurant named {restaurant.restaurant_name.title()}.")
 
 # Print statements detailing the restaurant info and opening the restaurant.
 restaurant.describe_restaurant()
