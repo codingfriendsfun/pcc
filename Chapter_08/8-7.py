@@ -3,7 +3,7 @@ def make_album(artist_name, album_title, songs=None):
 
     :param artist_name: param album_title:
     :param songs: Default value = None)
-    :param album_title: 
+    :param album_title:
 
     """
 
