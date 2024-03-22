@@ -1,26 +1,26 @@
 antares = {
-   
+
     'name': 'antares',
     'owner': 'noelle',
-    'job':'service dog',
+    'job': 'service dog',
     'age': '2'
-    
+
 }
 
 chekov = {
 
-    'name':'chekov',
+    'name': 'chekov',
     'owner': 'larissa',
-    'job':'service dog',
+    'job': 'service dog',
     'age': '3'
 
 }
 
 sherlock = {
-   
-    'name':'sherlock',
+
+    'name': 'sherlock',
     'owner': 'mom',
-    'job':'sleep, human walker',
+    'job': 'sleep, human walker',
     'age': '6'
 
 }
@@ -29,5 +29,6 @@ sherlock = {
 pets = [antares, chekov, sherlock]
 
 for pet in pets:
-   for key, value in pet.items():
-      print (f"\n{key.title()}: {value.title()}") ##value should only title sometimes so this comes out weird
+    for key, value in pet.items():
+        # value should only title sometimes so this comes out weird
+        print(f"\n{key.title()}: {value.title()}")

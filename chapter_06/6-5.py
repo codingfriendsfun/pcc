@@ -5,4 +5,4 @@ rivers = {
 }
 
 for key, value in rivers.items():
-    print (f"\nCountry: {key.title()}, River: {value.title()}")
+    print(f"\nCountry: {key.title()}, River: {value.title()}")

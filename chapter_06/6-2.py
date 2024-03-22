@@ -7,4 +7,4 @@ favoriteNumbersList = {
 }
 
 for key, value in favoriteNumbersList.items():
-    print (f"\nPerson: {key.title()}, Favorite Number: {value}")
+    print(f"\nPerson: {key.title()}, Favorite Number: {value}")

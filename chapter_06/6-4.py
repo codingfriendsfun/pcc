@@ -9,8 +9,8 @@ glossary = {
     'tupple': 'unchangeable value',
     'dictionary': 'a series of key value pairs',
     'for': 'does something for a time'
-    
+
 }
 
 for key, value in glossary.items():
-    print (f"\nTaught Item: {key.title()}, function: {value}")
+    print(f"\nTaught Item: {key.title()}, function: {value}")

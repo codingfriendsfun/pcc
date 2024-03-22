@@ -1,4 +1,4 @@
-numbers = list(range(1,1000001))
+numbers = list(range(1, 1000001))
 
 print("first three numbers are")
 print(numbers[:3])

@@ -23,5 +23,5 @@ people = [person_1, person_2, person_3]
 
 for person in people:
     for key, value in person.items():
-        print (f"\nKey: {key.title()}")
-        print (f"Value: {value}")
+        print(f"\nKey: {key.title()}")
+        print(f"Value: {value}")
