@@ -17,10 +17,12 @@ def make_album(artist_name, album_title, songs=None):
     return album
 
 
-print(make_album(
-    "Boris Slavov",
-    "Baldur's Gate 3 Original Soundtrack",
-))
+print(
+    make_album(
+        "Boris Slavov",
+        "Baldur's Gate 3 Original Soundtrack",
+    )
+)
 
 album = make_album("Olivia Rodrigo", "guts", 12)
 print(album)
