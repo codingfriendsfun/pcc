@@ -1,23 +1,27 @@
 def store_car_info(manufacturer, model, **features):
-    """
-    Stores information about a car in a dictionary.
+    """Stores information about a car in a dictionary.
 
-    Args:
-        manufacturer (str): The car's manufacturer.
-        model (str): The car's model name.
-        **features: Arbitrary keyword arguments (e.g., color, other features).
+    :param manufacturer: The car's manufacturer.
+    :type manufacturer: str
+    :param model: The car's model name.
+    :type model: str
+    :param **features: Arbitrary keyword arguments (e.g., color, other features).
+    :returns: A dictionary containing car information.
+    :rtype: dict
 
-    Returns:
-        dict: A dictionary containing car information.
     """
-    features['manufacturer'] = manufacturer
-    features['model'] = model
+    features["manufacturer"] = manufacturer
+    features["model"] = model
     return features
 
 
 # Example usage
-my_car = store_car_info(manufacturer='Chevy', model='Volt', color='Blue',
-                         Bonus=['Bose Stereo', 'Navigation'])
+my_car = store_car_info(
+    manufacturer="Chevy",
+    model="Volt",
+    color="Blue",
+    Bonus=["Bose Stereo", "Navigation"],
+)
 
 # Print the stored car information
 print("Car Information:")
