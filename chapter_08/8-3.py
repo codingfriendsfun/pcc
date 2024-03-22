@@ -1,8 +1,8 @@
 def make_shirt(size, text):
     """
 
-    :param size: 
-    :param text: 
+    :param size:
+    :param text:
 
     """
     print(f"printing a {size} with {text} printed on it")

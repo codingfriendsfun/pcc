@@ -1,8 +1,8 @@
 def make_album(artist, album, songs=1):
     """create a dictionary with an arist and an album
 
-    :param artist: 
-    :param album: 
+    :param artist:
+    :param album:
     :param songs:  (Default value = 1)
 
     """
