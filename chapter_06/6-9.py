@@ -1,9 +1,4 @@
-favorite_places = {
-
-    'ravi': 'hawaii',
-    'dan': 'mexico',
-    'cousin franky': 'jail'
-}
+favorite_places = {"ravi": "hawaii", "dan": "mexico", "cousin franky": "jail"}
 
 
 for key, value in favorite_places.items():

@@ -7,5 +7,6 @@ for user in new_users:
     if user.lower() in current_users:
         print("Sorry that name already exists, please enter a new name")
     else:
-        print(f"That username is available. welcome " +
-              user.title())  # {user} may be needed here
+        print(
+            f"That username is available. welcome " + user.title()
+        )  # {user} may be needed here
