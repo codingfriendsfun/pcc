@@ -12,6 +12,7 @@ while winner == False:
         winning_numbers.append(choice(possible_pulls))
     if my_ticket == winning_numbers:
         print('You win!')
+        print(f'It took {count} trys to win. Your ticket {my_ticket}, and the winning numbers {winning_numbers}')
         winner = True
     else:
         print(f'You Lost, winning ticket was {winning_numbers} and your ticket was {my_ticket}')
