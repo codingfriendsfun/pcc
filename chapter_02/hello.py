@@ -1,5 +1,5 @@
 message = "Hello Python world!"
-print (message)
+print(message)
 message = "Hello PYthon Crash Course world!"
-print (message)
-print ("Languages:\nPython\nC\nJavascript")
+print(message)
+print("Languages:\nPython\nC\nJavascript")
