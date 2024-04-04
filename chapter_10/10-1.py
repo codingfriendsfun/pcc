@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-file = Path('learning_python.txt')
+file = Path('./chapter_10/learning_python.txt')
 filedump = file.read_text()
 
 print(filedump)
