@@ -1,9 +1,8 @@
 # 10-8. Cats and Dogs
 
-from pathlib import Path
-
 # deal with "What folder am I working from?"
 import os
+from pathlib import Path
 
 cwd = os.getcwd()
 index = cwd.find("chapter")
