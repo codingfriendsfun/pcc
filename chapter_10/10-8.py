@@ -37,8 +37,10 @@ def readDogFile(dogFile="dogs.txt", animal="dogs"):
     readCatFile(dogFile, animal)
 
 
-catFile = input("Enter cat file name, or enter nothing to use default cats.txt: ")
-dogFile = input("Enter dog file name, or enter nothing to use default dogs.txt: ")
+catFile = input(
+    "Enter cat file name, or enter nothing to use default cats.txt: ")
+dogFile = input(
+    "Enter dog file name, or enter nothing to use default dogs.txt: ")
 print()  # output a blank line for readability
 
 if not catFile:
