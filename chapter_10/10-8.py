@@ -10,6 +10,7 @@ if index > 0:
     cwd = cwd[:index]
 # else do nothing, assume we're in workspace root
 
+
 def readCatFile(catFile='cats.txt', animal="cats"):
     try:
         file = Path(f"{cwd}/chapter_10/{catFile}")
@@ -18,12 +19,16 @@ def readCatFile(catFile='cats.txt', animal="cats"):
     print(f"Printing list of {animal}: ")
     print(f"{file.read_text()}\n")
 
+
 def readDogFile(dogFile='dogs.txt', animal="dogs"):
     readCatFile(dogFile, animal)
 
-catFile = input("Enter cat file name, or enter nothing to use default cats.txt: ")
-dogFile = input("Enter dog file name, or enter nothing to use default dogs.txt: ")
-print() # output a blank line for readability
+
+catFile = input(
+    "Enter cat file name, or enter nothing to use default cats.txt: ")
+dogFile = input(
+    "Enter dog file name, or enter nothing to use default dogs.txt: ")
+print()  # output a blank line for readability
 
 if not catFile:
     readCatFile()
