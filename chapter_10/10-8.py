@@ -12,6 +12,12 @@ if index > 0:
 
 
 def readCatFile(catFile="cats.txt", animal="cats"):
+    """
+
+    :param catFile:  (Default value = "cats.txt")
+    :param animal:  (Default value = "cats")
+
+    """
     try:
         file = Path(f"{cwd}/chapter_10/{catFile}")
     except FileNotFound:
@@ -21,6 +27,12 @@ def readCatFile(catFile="cats.txt", animal="cats"):
 
 
 def readDogFile(dogFile="dogs.txt", animal="dogs"):
+    """
+
+    :param dogFile:  (Default value = "dogs.txt")
+    :param animal:  (Default value = "dogs")
+
+    """
     readCatFile(dogFile, animal)
 
 
