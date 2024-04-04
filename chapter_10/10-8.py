@@ -1,5 +1,4 @@
 # 10-8. Cats and Dogs
-
 # deal with "What folder am I working from?"
 import os
 from pathlib import Path
