@@ -11,10 +11,12 @@ if index > 0:
 # else do nothing, assume we're in workspace root
 
 def readCatFile(catFile='cats.txt', animal="cats"):
+    file = Path(f"{cwd}/chapter_10/{catFile}")
     try:
-        file = Path(f"{cwd}/chapter_10/{catFile}")
-    except FileNotFound:
-        print(f"{cwd}/{catFile} does not exist in chapter_10 directory.")
+        fileDump = file.read_text()
+    except FileNotFoundError:
+        print(f"Note: {catFile} does not exist in chapter_10 directory.\n")
+        return
     print(f"Printing list of {animal}: ")
     print(f"{file.read_text()}\n")
 
