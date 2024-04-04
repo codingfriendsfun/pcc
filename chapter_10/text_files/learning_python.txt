@@ -1,0 +1,4 @@
+In Python you can create loops that run for an infinte amount of time, but only if you have no intention on creating an infinite loop.
+In Python you can use list comprehension.
+In Python you can visualize data.
+In Python you can sssssslither like a ssssssnake.
