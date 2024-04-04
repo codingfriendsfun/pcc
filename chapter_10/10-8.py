@@ -4,6 +4,7 @@ from pathlib import Path
 
 # deal with "What folder am I working from?"
 import os
+
 cwd = os.getcwd()
 index = cwd.find("chapter")
 if index > 0:
@@ -11,7 +12,7 @@ if index > 0:
 # else do nothing, assume we're in workspace root
 
 
-def readCatFile(catFile='cats.txt', animal="cats"):
+def readCatFile(catFile="cats.txt", animal="cats"):
     try:
         file = Path(f"{cwd}/chapter_10/{catFile}")
     except FileNotFound:
@@ -20,14 +21,12 @@ def readCatFile(catFile='cats.txt', animal="cats"):
     print(f"{file.read_text()}\n")
 
 
-def readDogFile(dogFile='dogs.txt', animal="dogs"):
+def readDogFile(dogFile="dogs.txt", animal="dogs"):
     readCatFile(dogFile, animal)
 
 
-catFile = input(
-    "Enter cat file name, or enter nothing to use default cats.txt: ")
-dogFile = input(
-    "Enter dog file name, or enter nothing to use default dogs.txt: ")
+catFile = input("Enter cat file name, or enter nothing to use default cats.txt: ")
+dogFile = input("Enter dog file name, or enter nothing to use default dogs.txt: ")
 print()  # output a blank line for readability
 
 if not catFile:
