@@ -1,4 +1,4 @@
-# 10-1. Learning Python
+# 10-4. Guest
 
 from pathlib import Path
 
@@ -10,11 +10,6 @@ if index > 0:
     cwd = cwd[:index]
 # else do nothing, assume we're in workspace root
 
-file = Path(f'{cwd}/chapter_10/learning_python.txt')
-filedump = file.read_text()
-
-print(filedump)
-
-lines = filedump.splitlines()
-for line in lines:
-    print(line)
+path = Path(f'{cwd}scratch_files/guest.txt')
+name = input("\nName of guest: ")
+path.write_text(name)
