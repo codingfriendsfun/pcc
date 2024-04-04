@@ -18,7 +18,7 @@ def readCatFile(catFile='cats.txt', animal="cats"):
         print(f"Note: {catFile} does not exist in chapter_10 directory.\n")
         return
     print(f"Printing list of {animal}: ")
-    print(f"{file.read_text()}\n")
+    print(f"{fileDump}\n")
 
 def readDogFile(dogFile='dogs.txt', animal="dogs"):
     readCatFile(dogFile, animal)
