@@ -1,7 +1,7 @@
 from pathlib import Path
 import json
 
-path = Path('./chapter_10/fav_num.json')
+path = Path("./chapter_10/fav_num.json")
 if path.exists():
     contents = path.read_text()
     fav_num = json.loads(contents)
