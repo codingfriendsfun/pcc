@@ -4,8 +4,8 @@
 def make_album(artist_name, album_title, song_count=None):
     """
 
-    :param artist_name: 
-    :param album_title: 
+    :param artist_name:
+    :param album_title:
     :param song_count:  (Default value = None)
 
     """
