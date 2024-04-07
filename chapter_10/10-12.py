@@ -1,5 +1,5 @@
-from pathlib import Path
 import json
+from pathlib import Path
 
 path = Path("./chapter_10/fav_num.json")
 if path.exists():
