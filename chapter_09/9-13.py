@@ -13,12 +13,14 @@ class Die:
         """Simulate rolling a die"""
         print(randint(1, self.sides))
 
-
+six = Die(6)
 ten = Die(10)
 twenty = Die(20)
 
 for i in range(10):
     print(f"\n*** Roll {i+1} ***")
+    print("Six sided die rolled: ")
+    six.roll_die()
     print("Ten sided die rolled: ")
     ten.roll_die()
     print("Twenty sided die rolled: ")
