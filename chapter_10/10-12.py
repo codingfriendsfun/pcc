@@ -1,5 +1,5 @@
-from pathlib import Path
 import json
+from pathlib import Path
 
 # does everything the same but uses the name to find the correct file so you can
 # store multiple people
