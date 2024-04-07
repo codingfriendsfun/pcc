@@ -16,12 +16,12 @@ def getRootDir():
 
 def getNumber():
     return int(input("Please enter your favorite number: "))
-    print("Favorite number cached.")
 
 
 def storeNumber(jsonFile, num):
     path = Path(jsonFile)
     path.write_text(json.dumps(num))
+    print("Favorite number cached.")
     return 
 
 
