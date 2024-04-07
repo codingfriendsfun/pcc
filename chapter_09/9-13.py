@@ -13,6 +13,7 @@ class Die:
         """Simulate rolling a die"""
         print(randint(1, self.sides))
 
+
 six = Die(6)
 ten = Die(10)
 twenty = Die(20)
