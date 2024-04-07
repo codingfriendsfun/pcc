@@ -2,6 +2,13 @@
 
 
 def make_album(artist_name, album_title, song_count=None):
+    """
+
+    :param artist_name: 
+    :param album_title: 
+    :param song_count:  (Default value = None)
+
+    """
     album = {"Artist Name": artist_name, "Album Title": album_title}
     if song_count:
         album["Song Count"] = song_count
