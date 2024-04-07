@@ -1,7 +1,7 @@
 from pathlib import Path
 import json
-## does everything the same but uses the name to find the correct file so you can
-## store multiple people
+# does everything the same but uses the name to find the correct file so you can
+# store multiple people
 name = input('What is your name? ')
 path = Path(f'{name}.json')
 if path.exists():
