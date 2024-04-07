@@ -7,6 +7,7 @@ from pathlib import Path
 
 
 def getRootDir():
+    """ """
     # deal with "What folder am I working from?"
     cwd = os.getcwd()
     index = cwd.find("chapter")
@@ -17,17 +18,29 @@ def getRootDir():
 
 
 def getNumber():
+    """ """
     return int(input("Please enter your favorite number: "))
     print("Favorite number cached.")
 
 
 def storeNumber(jsonFile, num):
+    """
+
+    :param jsonFile: 
+    :param num: 
+
+    """
     path = Path(jsonFile)
     path.write_text(json.dumps(num))
     return
 
 
 def retrieveNumber(jsonFile):
+    """
+
+    :param jsonFile: 
+
+    """
     path = Path(jsonFile)
     if path.exists():
         print("I know your favorite number! It's " + f"{json.loads(path.read_text())}.")
@@ -38,6 +51,7 @@ def retrieveNumber(jsonFile):
 
 
 def main():
+    """ """
     rootDir = getRootDir()
 
     # create scratch dir
