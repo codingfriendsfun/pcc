@@ -1,10 +1,8 @@
 # 8-7. Album
 
+
 def make_album(artist_name, album_title, song_count=None):
-    album = {
-        "Artist Name": artist_name,
-        "Album Title": album_title
-    }
+    album = {"Artist Name": artist_name, "Album Title": album_title}
     if song_count:
         album["Song Count"] = song_count
     return album
