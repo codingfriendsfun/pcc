@@ -1,4 +1,4 @@
-my_foods = ['pizza', 'falafel', 'carrot cake']
+my_foods = ["pizza", "falafel", "carrot cake"]
 friend_foods = my_foods[:]
 
 for foods in my_foods:

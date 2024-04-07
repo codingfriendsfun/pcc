@@ -1,9 +1,9 @@
 favorite_languages = {
-    'jen': 'python',
-    'Rob': 'html',
-    'chris': 'rust',
-    'larissa': 'java',
-    'ravi': 'python'
+    "jen": "python",
+    "Rob": "html",
+    "chris": "rust",
+    "larissa": "java",
+    "ravi": "python",
 }
 
 pollees = ["Ravi", "rob", "Lauren", "noelle", "kristin"]

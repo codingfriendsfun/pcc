@@ -1,4 +1,13 @@
-sandwich_orders = ["BLT", "Turkey Club", "Veggie Delight", "Pastrami", "Grilled Cheese", "Pastrami", "Pastrami", "Pastrami"]
+sandwich_orders = [
+    "BLT",
+    "Turkey Club",
+    "Veggie Delight",
+    "Pastrami",
+    "Grilled Cheese",
+    "Pastrami",
+    "Pastrami",
+    "Pastrami",
+]
 
 # Check if there's enough pastrami
 if sandwich_orders.count("Pastrami") >= 3:
@@ -11,9 +20,6 @@ else:
 
 # Initialize an empty list for finished sandwiches
 finished_sandwiches = []
-
-
-
 
 # Loop through each sandwich order
 while sandwich_orders:
