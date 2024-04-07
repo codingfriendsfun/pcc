@@ -1,9 +1,9 @@
 # 10-12. Favorite Number
 # store and retrieve a favorite number
 
-from pathlib import Path
 import json
 import os
+from pathlib import Path
 
 
 def getRootDir():
