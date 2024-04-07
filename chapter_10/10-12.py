@@ -24,8 +24,8 @@ def getNumber():
 def storeNumber(jsonFile, num):
     """
 
-    :param jsonFile: 
-    :param num: 
+    :param jsonFile:
+    :param num:
 
     """
     path = Path(jsonFile)
@@ -37,7 +37,7 @@ def storeNumber(jsonFile, num):
 def retrieveNumber(jsonFile):
     """
 
-    :param jsonFile: 
+    :param jsonFile:
 
     """
     path = Path(jsonFile)
