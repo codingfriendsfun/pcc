@@ -1,6 +1,5 @@
 # 10-12. Favorite Number
 # store and retrieve a favorite number
-
 import json
 import os
 from pathlib import Path
