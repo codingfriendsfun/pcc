@@ -30,8 +30,7 @@ def storeNumber(jsonFile, num):
 def retrieveNumber(jsonFile):
     path = Path(jsonFile)
     if path.exists():
-        print("I know your favorite number! It's " +
-              f"{json.loads(path.read_text())}.")
+        print("I know your favorite number! It's " + f"{json.loads(path.read_text())}.")
     else:
         print("Cached file not found, prompting for number...")
         storeNumber(jsonFile, getNumber())
