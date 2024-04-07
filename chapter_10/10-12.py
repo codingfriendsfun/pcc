@@ -1,15 +1,17 @@
-#10-12. Favorite Number
+# 10-12. Favorite Number
 # store and retrieve a favorite number
 
 from pathlib import Path
-import json, os
+import json
+import os
+
 
 def getRootDir():
     # deal with "What folder am I working from?"
     cwd = os.getcwd()
     index = cwd.find("chapter")
     if index > 0:
-       cwd = cwd[:index]
+        cwd = cwd[:index]
     # else do nothing, assume we're in workspace root
     return cwd
 
@@ -22,18 +24,18 @@ def storeNumber(jsonFile, num):
     path = Path(jsonFile)
     path.write_text(json.dumps(num))
     print("Favorite number cached.")
-    return 
+    return
 
 
 def retrieveNumber(jsonFile):
     path = Path(jsonFile)
     if path.exists():
-        print("I know your favorite number! It's " + 
-            f"{json.loads(path.read_text())}.")
+        print("I know your favorite number! It's " +
+              f"{json.loads(path.read_text())}.")
     else:
         print("Cached file not found, prompting for number...")
         storeNumber(jsonFile, getNumber())
-    return 
+    return
 
 
 def main():
@@ -44,7 +46,7 @@ def main():
     if not scratchDir.exists():
         os.mkdir(scratchDir.resolve())
 
-    #now do the thing
+    # now do the thing
     retrieveNumber(f"{scratchDir.resolve()}/favNum.json")
 
 
