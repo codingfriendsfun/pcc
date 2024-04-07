@@ -48,3 +48,14 @@ numbers.json
 chapter_10/number_reader.py
 chapter_10/remember_me.py
 username.json
+chapter_11/city_functions.py
+chapter_11/test_cities.py
+chapter_11/__pycache__
+chapter_11/.pytest_cache
+chapter_11/city_functions_w_population.py
+chapter_11/employee.py
+chapter_11/test_employee.py
+alien_invasion/
+chapter_12/__pycache__
+chapter_12/12-4.py
+chapter_12/cat2.py

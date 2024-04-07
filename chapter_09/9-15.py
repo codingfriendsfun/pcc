@@ -3,20 +3,20 @@ from random import choice
 # List ten numbers and five letters
 random_things = [4, 8, 15, 16, 23, 42, 77, 82, 19, 28, 'l', 'a', 'd', 'f',]
 
-
 # Pick the numbers for my ticket.
 my_ticket = [77, 4, 'a', 19]
 
 # Set attempts to 0
-attempts = 0
+attempts = 1
 max_attempts = 1_000_000
 
 while True:
     # Keep pulling numbers until my_ticket wins.
     if attempts == max_attempts:
         break
-    selection = f"{choice(random_things)} {choice(random_things)} "
-    selection += f"{choice(random_things)} {choice(random_things)}"
+    # Doesn't work, comparing a string w/spaces and commas to a list
+    selection = f"{choice(random_things)}, {choice(random_things)}, "
+    selection += f"{choice(random_things)}, {choice(random_things)}"
     print(selection)
     if selection == my_ticket:
         break
