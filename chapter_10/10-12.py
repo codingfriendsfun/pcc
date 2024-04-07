@@ -35,6 +35,7 @@ def retrieveNumber(jsonFile):
         storeNumber(jsonFile, getNumber())
     return 
 
+
 def main():
     rootDir = getRootDir()
 
