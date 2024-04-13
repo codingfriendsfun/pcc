@@ -40,9 +40,10 @@ class Restaurant:
 
 restaurant = Restaurant("lucia's tavola", "italian")
 
-print(
-    f"A favorite restaurant of mine serves  {restaurant.cuisine_type.title()} food."
-    f" restaurant named {restaurant.restaurant_name.title()}.")
+sentence = f"A favorite restaurant of mine serves  {restaurant.cuisine_type.title()} food."
+sentence += f"restaurant named {restaurant.restaurant_name.title()}."
+    
+   print(sentence)
 
 # Print statements detailing the restaurant info and opening the restaurant.
 restaurant.describe_restaurant()
