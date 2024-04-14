@@ -23,17 +23,33 @@ def get_log_dir(name="Logs"):
         os.mkdir(log_dir.resolve())
 
     return log_dir
-    
+
 
 class AlienLogger:
     """Logging class for Alien Invasion"""
 
-    def __init__(self, module_name, level=logging.NOTSET):
+    def __init__(self, module_name, level="INHERIT"):
         """initializing logger"""
         self.logger = logging.getLogger(module_name)
         self.log_dir = get_log_dir()
 
+        self.levels = {
+                        "INHERIT": logging.NOTSET,
+                        "DEBUG": logging.DEBUG,
+                        "INFO": logging.INFO,
+                        "WARNING": logging.WARNING,
+                        "ERROR": logging.ERROR,
+                        "CRITICAL": logging.CRITICAL
+        } # log levels
+
+        self.set_log_level(level)
+
         if module_name == '__main__':
-            logging.basicConfig(filename=self.log_dir, level=level)
+            logging.basicConfig(filename=self.log_dir, level=self.log_level)
             self.logger.info("Initializing main logger.")
+        else: # some other module
+            self.logger.info(f"Initializing logger for {module_name}")
+
+    def set_log_level(self, level):
+        self.log_level = self.levels[level]
 
