@@ -12,10 +12,20 @@ def employee():
 
 
 def test_give_default_raise(employee):
+    """
+
+    :param employee: 
+
+    """
     employee.give_raise()
     assert employee.salary == 5000
 
 
 def test_give_custom_raise(employee):
+    """
+
+    :param employee: 
+
+    """
     employee.give_raise(10)
     assert employee.salary == 10
