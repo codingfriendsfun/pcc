@@ -23,3 +23,17 @@ def get_log_dir(name="Logs"):
         os.mkdir(log_dir.resolve())
 
     return log_dir
+    
+
+class AlienLogger:
+    """Logging class for Alien Invasion"""
+
+    def __init__(self, module_name, level=logging.NOTSET):
+        """initializing logger"""
+        self.logger = logging.getLogger(module_name)
+        self.log_dir = get_log_dir()
+
+        if module_name == '__main__':
+            logging.basicConfig(filename=self.log_dir, level=level)
+            self.logger.info("Initializing main logger.")
+
