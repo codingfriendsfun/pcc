@@ -1,8 +1,8 @@
 # test suite for 11-3. Employee
 # test_employee.py
 
-from employee import Employee
 import pytest
+from employee import Employee
 
 
 @pytest.fixture
