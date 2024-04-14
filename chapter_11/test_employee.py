@@ -4,6 +4,7 @@
 from employee import Employee
 import pytest
 
+
 @pytest.fixture
 def employee():
     """employee to be shared by all tests"""
