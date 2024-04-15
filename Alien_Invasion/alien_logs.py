@@ -42,7 +42,7 @@ class AlienLogger:
                         "CRITICAL": logging.CRITICAL
         } # log levels
 
-        self.set_log_level(level)
+        self.define_log_level(level)
 
         if module_name == '__main__':
             logging.basicConfig(filename=f"{self.log_dir}/AlienInvasion.log", level=self.log_level)
@@ -50,6 +50,10 @@ class AlienLogger:
         else: # some other module
             self.logger.info(f"Initializing logger for {module_name}")
 
-    def set_log_level(self, level):
+    def define_log_level(self, level):
         self.log_level = self.levels[level]
+
+    def change_log_level(self, level):
+        self.log_level = self.levels[level]
+        self.logger.setLevel(self.log_level)
 
