@@ -14,8 +14,9 @@ def get_log_dir(name="Logs"):
     cwd = os.getcwd()
     index = cwd.find("Alien_Invasion")
     if index > 0:
-       root_dir = cwd[:index]
-    # else do nothing, assume we're in root
+        root_dir = cwd[:index]
+    else: # assume we're in root
+        root_dir = cwd
 
     # create log dir
     log_dir = Path(f"{root_dir}/Alien_Invasion/{name}")
@@ -46,7 +47,13 @@ class AlienLogger:
         self.define_log_level(level)
 
         if module_name == '__main__':
-            logging.basicConfig(filename=f"{self.log_dir}/AlienInvasion.log", level=self.log_level)
+            logging.basicConfig(
+                style='{',
+                format="{asctime} {levelname} - {filename}:{lineno}: {message}",
+                datefmt="%Y-%m-%d %H:%M:%S", 
+                filename=f"{self.log_dir}/AlienInvasion.log", 
+                filemode='w',
+                level=self.log_level)
             self.logger.info("Initializing main logger.")
         else: # some other module
             self.logger.info(f"Initializing logger for {module_name}")
