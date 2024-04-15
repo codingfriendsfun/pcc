@@ -2,12 +2,16 @@
 
 import pygame
 import os
+from alien_logs import AlienLogger
 
 class Ship:
     """A class to manage the ship."""
 
     def __init__(self, ai_game):
         """Initialize the ship and set its starting position."""
+
+        self.logs = AlienLogger(__name__)
+        self.logs.logger.info(f"Initializing ship.")
 
         self.screen = ai_game.screen
         self.screen_rect = ai_game.screen.get_rect()
@@ -17,6 +21,8 @@ class Ship:
         index = cwd.find("Alien_Invasion")
         if index > 0:
             cwd = cwd[:index]
+        image_path = f'{cwd}/Alien_Invasion/images/ship.bmp'
+        self.logs.logger.debug(f"Ship Image: {image_path}")
 
         # Load the ship image and get its rect
         self.image = pygame.image.load(f'{cwd}/Alien_Invasion/images/ship.bmp')
@@ -24,6 +30,7 @@ class Ship:
 
         # Start each new ship at the bottom center of the screen
         self.rect.midbottom = self.screen_rect.midbottom
+        self.logs.logger.debug("Ship initialization complete.")
 
     def blitme(self):
         """Draw the ship at its current location."""
