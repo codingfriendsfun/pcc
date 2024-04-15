@@ -50,8 +50,10 @@ class AlienLogger:
         else: # some other module
             self.logger.info(f"Initializing logger for {module_name}")
 
+
     def define_log_level(self, level):
         self.log_level = self.levels[level]
+
 
     def change_log_level(self, level):
         self.log_level = self.levels[level]
