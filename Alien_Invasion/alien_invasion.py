@@ -1,6 +1,7 @@
 # Alien Invasion Pygame window
 
 import sys
+import os
 import pygame
 from settings import Settings
 from ship import Ship
@@ -16,13 +17,19 @@ class AlienInvasion:
         pygame.init()
         self.clock = pygame.time.Clock()
         self.settings = Settings()
-        self.logger = AlienLogger(__name__, log_level)
+        self.logs = AlienLogger(__name__, log_level)
         
+        # determine cwd
+        cwd = os.getcwd()
+        self.logs.logger.info(f"Running from: {cwd}")
 
         # display settings
+        self.logs.logger.info(f"Initializing window.")
         self.screen = pygame.display.set_mode(
             (self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("Alien Invasion")
+        self.logs.logger.debug("Window initialization complete.")
+        
 
         #initialize ship after window since ship uses window info
         self.ship = Ship(self)
