@@ -4,16 +4,19 @@ import sys
 import pygame
 from settings import Settings
 from ship import Ship
+from alien_logs import AlienLogger
+
 
 class AlienInvasion:
     """Overall class to manage game assets and behavior."""
 
-    def __init__(self):
+    def __init__(self, log_level):
         """Initialize the game, and create game resources."""
 
         pygame.init()
         self.clock = pygame.time.Clock()
         self.settings = Settings()
+        self.logger = AlienLogger(__name__, log_level)
         
 
         # display settings
@@ -50,7 +53,7 @@ class AlienInvasion:
 
 if __name__ == '__main__':
     # create instance of game object, and run the game
-    ai = AlienInvasion()
+    ai = AlienInvasion("INFO")
     ai.run_game()
 
 
