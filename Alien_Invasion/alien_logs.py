@@ -45,7 +45,7 @@ class AlienLogger:
         self.set_log_level(level)
 
         if module_name == '__main__':
-            logging.basicConfig(filename=self.log_dir, level=self.log_level)
+            logging.basicConfig(filename=f"{self.log_dir}/AlienInvasion.log", level=self.log_level)
             self.logger.info("Initializing main logger.")
         else: # some other module
             self.logger.info(f"Initializing logger for {module_name}")
