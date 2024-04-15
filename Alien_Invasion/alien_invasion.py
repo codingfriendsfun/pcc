@@ -49,6 +49,7 @@ class AlienInvasion:
             # Make the most recently drawn screen visible
             pygame.display.flip()
             self.clock.tick(60)
+            
 
     def _check_events(self):
         """Respond to keypresses and mouse events"""
@@ -57,6 +58,7 @@ class AlienInvasion:
             # if user presses exit window button
             if event.type == pygame.QUIT:
                 sys.exit()
+
 
 if __name__ == '__main__':
     # create instance of game object, and run the game
