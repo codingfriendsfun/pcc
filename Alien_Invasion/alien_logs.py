@@ -30,6 +30,7 @@ class AlienLogger:
 
     def __init__(self, module_name, level="INHERIT"):
         """initializing logger"""
+
         self.logger = logging.getLogger(module_name)
         self.log_dir = get_log_dir()
 
@@ -52,10 +53,14 @@ class AlienLogger:
 
 
     def define_log_level(self, level):
+        """Set log level value, regardless of logger initialization status."""
+
         self.log_level = self.levels[level]
 
 
     def change_log_level(self, level):
+        """Update the logging level"""
+        
         self.log_level = self.levels[level]
         self.logger.setLevel(self.log_level)
 
