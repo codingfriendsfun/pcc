@@ -1,6 +1,7 @@
 # ship class for Alien Invasion
 
 import pygame
+import os
 
 class Ship:
     """A class to manage the ship."""
@@ -11,8 +12,14 @@ class Ship:
         self.screen = ai_game.screen
         self.screen_rect = ai_game.screen.get_rect()
 
+        # determine cwd
+        cwd = os.getcwd()
+        index = cwd.find("Alien_Invasion")
+        if index > 0:
+            cwd = cwd[:index]
+
         # Load the ship image and get its rect
-        self.image = pygame.image.load('images/ship.bmp')
+        self.image = pygame.image.load(f'{cwd}/Alien_Invasion/images/ship.bmp')
         self.rect = self.image.get_rect()
 
         # Start each new ship at the bottom center of the screen
