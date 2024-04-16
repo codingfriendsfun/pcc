@@ -70,7 +70,9 @@ class RainGame:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            # Consider adding esc to quit too
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    sys.exit()
 
     def _update_raindrops(self):
         """Check if raindrop has fallen off screen; update positions"""
