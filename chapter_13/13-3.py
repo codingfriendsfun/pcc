@@ -45,7 +45,7 @@ class RainGame:
 
     def _check_rain_edges(self):
         """Respond appropriately if rain falls of screen"""
-        for raindrop in self.raindrops.sprites():
+        for raindrop in self.raindrops.copy():
             if raindrop.check_bottom():
                 self.raindrops.remove(raindrop)
 
