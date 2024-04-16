@@ -27,20 +27,21 @@ class RainGame:
 
     def _create_rain(self):
         """Create rain"""
+        # Modeled after PCC _create_fleet()
         # Create raindrops on screen until out of room
         # Half a raindrop's space around each raindrop
         raindrop = Raindrop(self)
         raindrop_width, raindrop_height = raindrop.rect.size
 
         current_x, current_y = raindrop_width, raindrop_height
-        while current_y < (self.screen_height - 1 * raindrop_height):
+        while current_y < (self.screen_height - 3 * raindrop_height):
             while current_x < (self.screen_width - 1 * raindrop_width):
                 self._create_raindrop(current_x, current_y)
                 current_x += 1 * raindrop_width
 
             # Finished row: reset x; increment y
             current_x = raindrop_width
-            current_y += 1.5 * raindrop_height
+            current_y += 2 * raindrop_height
 
     def _check_rain_edges(self):
         """Respond appropriately if rain falls of screen"""
@@ -69,14 +70,13 @@ class RainGame:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            elif event.type == pygame.K_ESCAPE:
-                sys.exit()
+            # Consider adding esc to quit too
 
     def _update_raindrops(self):
         """Check if raindrop has fallen off screen; update positions"""
         self._check_rain_edges()
-        self.raindrops.update()
-        print
+        for raindrop in self.raindrops.sprites():
+            raindrop.rect.y += 1
 
     def _update_screen(self):
         """Update images on screen; flip to new screen"""

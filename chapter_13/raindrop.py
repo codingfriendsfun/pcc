@@ -8,7 +8,7 @@ class Raindrop(Sprite):
         """Initialize raindrop and set starting position"""
         super().__init__()
         self.screen = rain_game.screen
-        self.rain_speed = 1.0
+        self.rain_speed = 2.0
 
         # Load image; set rect attribute
         self.image = pygame.image.load('chapter_13/raindrop.bmp')
@@ -19,11 +19,6 @@ class Raindrop(Sprite):
         self.rect.y - self.rect.height
 
         self.y = float(self.rect.y)
-
-    def update(self):
-        """Let the rain fall down"""
-        self.y += self.rain_speed
-        self.rect.y = self.y
 
     def check_bottom(self):
         """Return True if raindrop has fallen off screen"""
