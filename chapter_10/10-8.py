@@ -1,6 +1,6 @@
 from pathlib import Path
 
-pet_names = ['./chapter_10/cats.txt', './chapter_10/dogs.txt']
+pet_names = ["./chapter_10/cats.txt", "./chapter_10/dogs.txt"]
 
 for pet_name in pet_names:
     try:
