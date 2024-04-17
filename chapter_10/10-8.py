@@ -10,5 +10,6 @@ for pet_name in pet_names:
         print("Some good pet names are:")
         print(pet_name)
     except FileNotFoundError:
-        print("Oops, we're missing some pet names :')")
+        error = "Either file does not exist or program was not run from PCC directory"
+        print(f"{error}")
         
