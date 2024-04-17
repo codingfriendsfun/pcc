@@ -1,0 +1,5 @@
+In python you can use scripting friendly concepts to achieve powerful programs. You can import classes and functions. Modify strings and integers, do comparisons, use variables  loops and other useful devices to achieve all your typical functionality.                          
+
+     Also you can slither like a snake apparently.                          
+
+   I think python was used to make snake? are we going to make snake?              
