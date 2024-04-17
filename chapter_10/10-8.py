@@ -6,10 +6,9 @@ for pet_name in pet_names:
     try:
         path = Path(pet_name)
         pet_name = path.read_text()
-    
+
         print("Some good pet names are:")
         print(pet_name)
     except FileNotFoundError:
         error = "Either file does not exist or program was not run from PCC directory"
         print(f"{error}")
-        
