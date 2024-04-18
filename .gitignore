@@ -51,7 +51,6 @@ username.json
 chapter_11/__pycache__
 chapter_11/.pytest_cache
 alien_invasion/
-chapter_13/13-5.py
 chapter_12/__pycache__
 chapter_13/__pycache__
 *.json
