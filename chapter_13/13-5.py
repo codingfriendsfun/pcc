@@ -1,12 +1,3 @@
-# In main game, initialize self.aliens as group and _create_fleet
-# In main game define _create_fleet, _create_alien, _check_fleet_edges,
-    # _change_fleet_direction
-# Under run_game, add self._update_aliens()
-# Under _update_bullets, add call to _check_bullet_alien_collisions
-# Define _check_bullet_alien_collisions
-# Define _update_aliens
-# Under _update_screen, draw aliens
-
 import sys
 
 import pygame
@@ -35,6 +26,7 @@ class SidewaysShooter:
 
         self._create_fleet()
 
+
     def _create_fleet(self):
         """Create fleet of aliens"""
         # Create alien; add more aliens until out of room
@@ -42,8 +34,39 @@ class SidewaysShooter:
         alien = Alien(self)
         alien_width, alien_height = alien.rect.size
 
-        current_x, current_y = alien_width, alien_height
-        # Figure out while loop later
+        current_x, current_y = (alien_width * 3), alien_height
+        while current_x < (self.settings.screen_width - 1 * alien_width):
+            while current_y < (self.settings.screen_height - 1 * alien_height):
+                self._create_alien(current_x, current_y)
+                current_y += 2 * alien_width
+
+            # Finished column; reset y, increment x
+            current_y = alien_height
+            current_x += 2 * alien_width
+
+
+    def _create_alien(self, x_position, y_position):
+        """Create alien, place it in column"""
+        new_alien = Alien(self)
+        new_alien.y = y_position
+        new_alien.rect.y = y_position
+        new_alien.rect.x = x_position
+        self.aliens.add(new_alien)
+
+
+    def _check_fleet_edges(self):
+        """Respond appropriately when alien reaches edge of screen"""
+        for alien in self.aliens.sprites():
+            if alien.check_edges():
+                self._change_fleet_direction()
+                break
+
+        
+    def _change_fleet_direction(self):
+        """Shift fleet left and change direction"""
+        for alien in self.aliens.sprites():
+            alien.rect.x += self.settings.fleet_drop_speed
+        self.settings.fleet_direction *= -1
         
 
     def run_game(self):
@@ -52,6 +75,7 @@ class SidewaysShooter:
             self._check_events()
             self.ship.update()
             self._update_bullets()
+            self._update_aliens()
             self._update_screen()
             self.clock.tick(60)
 
@@ -65,6 +89,7 @@ class SidewaysShooter:
                 self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
+
 
     def _check_keydown_events(self, event):
         """Respond to keypresses"""
@@ -85,6 +110,7 @@ class SidewaysShooter:
         elif event.key == pygame.K_s:
             self.ship.moving_down = True
 
+
     def _check_keyup_events(self, event):
         """Respond to key releases"""
                 # Enable arrow key movement
@@ -98,6 +124,7 @@ class SidewaysShooter:
             self.ship.moving_up = False
         elif event.key == pygame.K_s:
             self.ship.moving_down = False
+
         
     def _fire_bullet(self):
         """Create new bullet; add bullets to group"""
@@ -117,6 +144,26 @@ class SidewaysShooter:
             if bullet.rect.right >= right_edge:
                 self.bullets.remove(bullet)
 
+        self._check_bullet_alien_collisions()
+
+
+    def _check_bullet_alien_collisions(self):
+        """Respond appropriately to alien/bullet collisions"""
+        # Remove any aliens/bullets that have collided
+        collisions = pygame.sprite.groupcollide(
+            self.bullets, self.aliens, True, True)
+        
+        if not self.aliens:
+            # Destroy existing bullets and create new fleet
+            self.bullets.empty()
+            self._create_fleet()
+
+
+    def _update_aliens(self):
+        """Check if fleet is at edge of screen; then update posotions"""
+        self._check_fleet_edges()
+        self.aliens.update()
+
     
     def _update_screen(self):
         """Update images on screen; flip to new screen"""
@@ -124,6 +171,7 @@ class SidewaysShooter:
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         self.ship.blitme()
+        self.aliens.draw(self.screen)
 
         pygame.display.flip()
 
@@ -132,3 +180,4 @@ if __name__ == '__main__':
     # Make game instance; run game
     ss = SidewaysShooter()
     ss.run_game()
+    

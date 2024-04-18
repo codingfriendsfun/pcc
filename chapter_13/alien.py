@@ -27,7 +27,9 @@ class Alien(Sprite):
         screen_rect = self.screen.get_rect()
         return (self.rect.bottom >= screen_rect.bottom) or (self.rect.top <= 0)
     
+    
     def update(self):
         """Move alien down"""
         self.y += self.settings.alien_speed * self.settings.fleet_direction
         self.rect.y = self.y
+        
