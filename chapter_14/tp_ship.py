@@ -45,17 +45,3 @@ class Ship:
     def blitme(self):
         """Draw ship at current location"""
         self.screen.blit(self.image, self.rect)
-
-class Settings:
-    """A class to store settings for Target Practice"""
-    
-    def __init__(self):
-        """Initialize game settings"""
-        # Screen settings
-        self.screen_width = 1200
-        self.screen_height = 700
-        self.bg_color = (105, 105, 105)
-
-        # Ship settings
-        self.ship_speed = 1.5
-        self.ship_limit = 3

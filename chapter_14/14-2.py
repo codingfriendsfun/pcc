@@ -3,8 +3,9 @@ from time import sleep
 
 import pygame
 
-from target_practice import Ship
-from target_practice import Settings
+from tp_ship import Ship
+from tp_settings import Settings
+from tp_bullet import Bullet
 
 class TargetPractice:
     """Overall class to manage game assets and behaviors"""
@@ -20,6 +21,7 @@ class TargetPractice:
         pygame.display.set_caption("Target Practice")
 
         self.ship = Ship(self)
+        self.bullets = pygame.sprite.Group()
 
     
     def run_game(self):
@@ -27,6 +29,7 @@ class TargetPractice:
         while True:
             self._check_events()
             self.ship.update()
+            self._update_bullets()
             self._update_screen()
             self.clock.tick(60)
 
@@ -46,6 +49,8 @@ class TargetPractice:
         """Respond to keypresses"""
         if event.key == pygame.K_ESCAPE:
             sys.exit()
+        elif event.key == pygame.K_SPACE:
+            self._fire_bullet()
         
         # Enable arrow key movement
         elif event.key == pygame.K_UP:
@@ -73,11 +78,33 @@ class TargetPractice:
             self.ship.moving_up = False
         elif event.key == pygame.K_s:
             self.ship.moving_down = False
+
+
+    def _fire_bullet(self):
+        """Create new bullet; add bullets to group"""
+        new_bullet = Bullet(self)
+        self.bullets.add(new_bullet)
+
+
+    def _update_bullets(self):
+        """Update bullet positions; get rid of old bullets"""
+        # Update bullet positions
+        self.bullets.update()
+
+        # Get rid of offscreen bullets
+        right_edge = self.settings.screen_width
+        for bullet in self.bullets.copy():
+            if bullet.rect.right >= right_edge:
+                self.bullets.remove(bullet)
+                
+                # PUT THING TO TRIGGER BULLET STAT HERE
             
 
     def _update_screen(self):
         """Update images on screen; flip to new screen"""
         self.screen.fill(self.settings.bg_color)
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
         self.ship.blitme()
 
         pygame.display.flip()
