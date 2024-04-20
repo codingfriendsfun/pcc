@@ -46,10 +46,34 @@ class TargetPractice:
         """Respond to keypresses"""
         if event.key == pygame.K_ESCAPE:
             sys.exit()
+        
+        # Enable arrow key movement
+        elif event.key == pygame.K_UP:
+            self.ship.moving_up = True
+        elif event.key == pygame.K_DOWN:
+            self.ship.moving_down = True
+
+        # Enable WASD movement
+        elif event.key == pygame.K_w:
+            self.ship.moving_up = True
+        elif event.key == pygame.K_s:
+            self.ship.moving_down = True
 
     
     def _check_keyup_events(self, event):
         """Respond to key releases"""
+        # Enable arrow key movement
+        if event.key == pygame.K_UP:
+            self.ship.moving_up = False
+        elif event.key == pygame.K_DOWN:
+            self.ship.moving_down = False
+
+        # Enable WASD movement
+        elif event.key == pygame.K_w:
+            self.ship.moving_up = False
+        elif event.key == pygame.K_s:
+            self.ship.moving_down = False
+            
 
     def _update_screen(self):
         """Update images on screen; flip to new screen"""
