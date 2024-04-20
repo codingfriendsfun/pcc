@@ -54,3 +54,10 @@ alien_invasion/
 chapter_12/__pycache__
 chapter_13/__pycache__
 *.json
+chapter_14/__pycache__
+chapter_14/__pycache__/alien.cpython-312.pyc
+chapter_14/__pycache__/bullet.cpython-312.pyc
+chapter_14/__pycache__/button.cpython-312.pyc
+chapter_14/__pycache__/game_stats.cpython-312.pyc
+chapter_14/__pycache__/settings.cpython-312.pyc
+chapter_14/__pycache__/ship.cpython-312.pyc
