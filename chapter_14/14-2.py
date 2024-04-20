@@ -7,6 +7,7 @@ from tp_ship import Ship
 from tp_settings import Settings
 from tp_bullet import Bullet
 from tp_target import Target
+from tp_game_stats import GameStats
 
 class TargetPractice:
     """Overall class to manage game assets and behaviors"""
@@ -25,6 +26,12 @@ class TargetPractice:
         self.target = Target(self)
         self.bullets = pygame.sprite.Group()
 
+        # Create instance to store game stats
+        self.stats = GameStats(self)
+
+        # Start game in active state
+        self.game_active = True
+
 
     def _check_target_edges(self):
         """Respond appropriately when target reaches edge of screen"""
@@ -36,9 +43,11 @@ class TargetPractice:
         """Start main game loop"""
         while True:
             self._check_events()
-            self.ship.update()
-            self._update_bullets()
-            self._update_target()
+            if self.game_active:
+                self.ship.update()
+                self._update_bullets()
+                self._update_target()
+            
             self._update_screen()
             self.clock.tick(60)
 
@@ -104,13 +113,20 @@ class TargetPractice:
         right_edge = self.settings.screen_width
         for bullet in self.bullets.copy():
             if bullet.rect.right >= right_edge:
-                self.bullets.remove(bullet)
+                self._bullet_miss(bullet)
                 
-                # PUT THING TO TRIGGER BULLET STAT HERE
-
         # Check for bullets that hit target, delete those bullets
         if pygame.sprite.spritecollideany(self.target, self.bullets):
-            print("Target hit!")
+            self.bullets.remove(bullet)
+
+    
+    def _bullet_miss(self, bullet):
+        """Respond when a bullet misses the target"""
+        if self.stats.misses_left > 1:
+            self.bullets.remove(bullet)
+            self.stats.misses_left -= 1
+        else:
+            self.game_active = False
 
 
     def _update_target(self):
