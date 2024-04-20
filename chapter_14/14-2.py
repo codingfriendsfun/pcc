@@ -8,6 +8,7 @@ from tp_settings import Settings
 from tp_bullet import Bullet
 from tp_target import Target
 from tp_game_stats import GameStats
+from button import Button
 
 class TargetPractice:
     """Overall class to manage game assets and behaviors"""
@@ -30,7 +31,10 @@ class TargetPractice:
         self.stats = GameStats(self)
 
         # Start game in active state
-        self.game_active = True
+        self.game_active = False
+
+        # Make the Play button
+        self.play_button = Button(self, "Click or press space to play")
 
 
     def _check_target_edges(self):
@@ -61,13 +65,39 @@ class TargetPractice:
                 self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                self._check_play_button(mouse_pos)
+
+
+    def _check_play_button(self, mouse_pos):
+        """Start a new game when player clicks button"""
+        button_clicked = self.play_button.rect.collidepoint(mouse_pos)
+        if button_clicked and not self.game_active:
+            self._start_game()
+
+
+    def _start_game(self):
+        """Start the game"""
+        # Reset game statistics
+        self.stats.reset_stats()
+        self.game_active = True
+
+        # Get rid of any remaining bullets
+        self.bullets.empty()
+
+        # Center the ship
+        self.ship.center_ship()
+
+        # Hide mouse cursor
+        pygame.mouse.set_visible(False)
 
     
     def _check_keydown_events(self, event):
         """Respond to keypresses"""
         if event.key == pygame.K_ESCAPE:
             sys.exit()
-        elif event.key == pygame.K_SPACE:
+        elif event.key == pygame.K_SPACE and self.game_active:
             self._fire_bullet()
         
         # Enable arrow key movement
@@ -81,6 +111,10 @@ class TargetPractice:
             self.ship.moving_up = True
         elif event.key == pygame.K_s:
             self.ship.moving_down = True
+
+        # Start game with space bar
+        elif event.key == pygame.K_SPACE and not self.game_active:
+            self._start_game()
 
     
     def _check_keyup_events(self, event):
@@ -127,6 +161,7 @@ class TargetPractice:
             self.stats.misses_left -= 1
         else:
             self.game_active = False
+            pygame.mouse.set_visible(True)
 
 
     def _update_target(self):
@@ -142,6 +177,10 @@ class TargetPractice:
             bullet.draw_bullet()
         self.target.draw_target()
         self.ship.blitme()
+
+        # Draw play button if game is inactive
+        if not self.game_active:
+            self.play_button.draw_button()
 
         pygame.display.flip()
 
