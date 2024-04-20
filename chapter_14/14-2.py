@@ -25,6 +25,12 @@ class TargetPractice:
         self.target = Target(self)
         self.bullets = pygame.sprite.Group()
 
+
+    def _check_target_edges(self):
+        """Respond appropriately when target reaches edge of screen"""
+        if self.target.check_edges():
+            self.settings.target_direction *= -1
+
     
     def run_game(self):
         """Start main game loop"""
@@ -32,6 +38,7 @@ class TargetPractice:
             self._check_events()
             self.ship.update()
             self._update_bullets()
+            self._update_target()
             self._update_screen()
             self.clock.tick(60)
 
@@ -100,6 +107,12 @@ class TargetPractice:
                 self.bullets.remove(bullet)
                 
                 # PUT THING TO TRIGGER BULLET STAT HERE
+
+
+    def _update_target(self):
+        """Check if target is at edge of screen; then update positions"""
+        self._check_target_edges()
+        self.target.update()
             
 
     def _update_screen(self):

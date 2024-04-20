@@ -22,3 +22,15 @@ class Target:
     def draw_target(self):
         """Draw target to screen"""
         pygame.draw.rect(self.screen, self.color, self.rect)
+
+
+    def check_edges(self):
+        """Return True if target is at edge of screen"""
+        screen_rect = self.screen.get_rect()
+        return (self.rect.bottom >= screen_rect.bottom) or (self.rect.top <= 0)
+    
+
+    def update(self):
+        """Move target across screen"""
+        self.y += self.settings.target_speed * self.settings.target_direction
+        self.rect.y = self.y
