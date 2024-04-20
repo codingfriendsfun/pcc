@@ -18,6 +18,7 @@ class Ship:
 
         # determine cwd
         cwd = os.getcwd()
+        self.logs.logger.debug(f"Working Directory: {cwd}.")
         index = cwd.find("Alien_Invasion")
         if index > 0:
             cwd = cwd[:index]
@@ -35,4 +36,5 @@ class Ship:
     def blitme(self):
         """Draw the ship at its current location."""
 
+        self.logs.logger.debug("Drawing Ship.")
         self.screen.blit(self.image, self.rect)
