@@ -20,3 +20,9 @@ class Settings:
         self.bullet_width = 15
         self.bullet_height = 3
         self.bullet_color = (60, 60, 60)
+
+        # Target settings
+        self.target_speed = 3
+        self.target_width = 3
+        self.target_height = 30
+        self.target_color = (205, 205, 205)

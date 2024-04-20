@@ -6,6 +6,7 @@ import pygame
 from tp_ship import Ship
 from tp_settings import Settings
 from tp_bullet import Bullet
+from tp_target import Target
 
 class TargetPractice:
     """Overall class to manage game assets and behaviors"""
@@ -21,6 +22,7 @@ class TargetPractice:
         pygame.display.set_caption("Target Practice")
 
         self.ship = Ship(self)
+        self.target = Target(self)
         self.bullets = pygame.sprite.Group()
 
     
@@ -105,6 +107,7 @@ class TargetPractice:
         self.screen.fill(self.settings.bg_color)
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
+        self.target.draw_target()
         self.ship.blitme()
 
         pygame.display.flip()
