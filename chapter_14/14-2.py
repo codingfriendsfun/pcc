@@ -108,6 +108,10 @@ class TargetPractice:
                 
                 # PUT THING TO TRIGGER BULLET STAT HERE
 
+        # Check for bullets that hit target, delete those bullets
+        if pygame.sprite.spritecollideany(self.target, self.bullets):
+            print("Target hit!")
+
 
     def _update_target(self):
         """Check if target is at edge of screen; then update positions"""

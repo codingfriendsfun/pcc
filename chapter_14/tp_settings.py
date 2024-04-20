@@ -23,9 +23,9 @@ class Settings:
         self.bullet_misses = 3
 
         # Target settings
-        self.target_speed = 3
+        self.target_speed = 2
         self.target_width = 15
-        self.target_height = 50
+        self.target_height = 75
         self.target_color = (205, 205, 205)
         # target_direction 1 is down, -1 is up
         self.target_direction = 1
