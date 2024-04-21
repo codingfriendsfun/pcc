@@ -16,6 +16,8 @@ class Ship:
         self.screen = ai_game.screen
         self.screen_rect = ai_game.screen.get_rect()
 
+        self.settings = ai_game.settings
+
         # determine cwd
         cwd = os.getcwd()
         self.logs.logger.debug(f"Working Directory: {cwd}.")
@@ -32,6 +34,9 @@ class Ship:
         # Start each new ship at the bottom center of the screen
         self.rect.midbottom = self.screen_rect.midbottom
 
+        # Store a float for the ship's exact horizontal position.
+        self.x = float(self.rect.x)
+
         # Movement flag; start with a ship that's not moving.
         self.moving_right = False
         self.moving_left = False
@@ -44,10 +49,13 @@ class Ship:
 
         if self.moving_right and self.rect.right < self.screen_rect.right:
             self.logs.logger.debug("Moving ship right within screen dimensions.")
-            self.rect.x += 1
+            self.x += self.settings.ship_speed
         if self.moving_left and self.rect.left > 0:
             self.logs.logger.debug("Moving ship left within screen dimensions.")
-            self.rect.x -= 1
+            self.x -= self.settings.ship_speed
+
+        # Update rect object from self.x
+        self.rect.x = self.x
 
 
     def blitme(self):
