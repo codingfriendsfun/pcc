@@ -98,6 +98,9 @@ class AlienInvasion:
                 # Stop moving the ship to the left
                 self.logs.logger.debug("Detected left arrow release.")
                 self.ship.moving_left = False
+            elif event.key == pygame.K_q:
+                self.logs.logger.info("User pressed q to quit game.")
+                sys.exit()
 
 
     def _update_screen(self):
