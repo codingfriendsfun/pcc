@@ -120,10 +120,13 @@ class AlienInvasion:
     def _fire_bullet(self):
         """Create a new bullet and add it to the bullets group.""" 
 
-        self.logs.logger.info("Bullet created.")
-        new_bullet = Bullet(self)
-        self.bullets.add(new_bullet)
-        self.logs.logger.info(f"Current # of Bullets: {len(self.bullets) + 1}.")
+        if len(self.bullets) < self.settings.bullets_allowed:
+            self.logs.logger.info("Creating bullet.")
+            self.bullets.add(Bullet(self))
+            self.logs.logger.info(f"Current # of Bullets: " +
+                                    f"{len(self.bullets)}.")
+        else: # too many bullets
+            self.logs.logger.info("Max bullet limit reached.")
 
 
     def _update_screen(self):
