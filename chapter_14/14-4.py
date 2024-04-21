@@ -37,7 +37,7 @@ class AlienInvasion:
         self.game_active = False
 
         # Make the Play button
-        self.play_button = Button(self, "Click or Press Space to Start")
+        self.play_button = PlayButton(self, "Click or Press Space to Start")
 
 
     def _create_fleet(self):
