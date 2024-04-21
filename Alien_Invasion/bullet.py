@@ -29,6 +29,8 @@ class Bullet(Sprite):
     def update(self):
         """Move the bullet up the screen."""
 
+        self.logs.logger.debug(f"Moving bullet at speed {self.settings.bullet_speed}")
+
         # Update the exact position of the bullet.
         self.y -= self.settings.bullet_speed
 

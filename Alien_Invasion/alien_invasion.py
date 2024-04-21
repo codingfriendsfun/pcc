@@ -5,6 +5,7 @@ import os
 import pygame
 from settings import Settings
 from ship import Ship
+from bullet import Bullet
 from alien_logs import AlienLogger
 
 
@@ -32,8 +33,9 @@ class AlienInvasion:
         self.logs.logger.debug("Window initialization complete.")
         
 
-        #initialize ship after window since ship uses window info
+        #initialize ship and other elements after window since ship uses window info
         self.ship = Ship(self)
+        self.bullets = pygame.sprite.Group()
 
 
     def run_game(self):
@@ -44,10 +46,12 @@ class AlienInvasion:
             # look for input
             self._check_events()
             self.ship.update()
+            self.bullets.update()
             self._update_screen()
 
             # cycle pacing (ticks per second)
             self.clock.tick(60)
+
 
     def _check_events(self):
         """Respond to keypresses and mouse events."""
@@ -83,6 +87,8 @@ class AlienInvasion:
             # Move the ship to the left
             self.logs.logger.debug("Detected left arrow press.")
             self.ship.moving_left = True
+        elif event.key == pygame.K_SPACE:
+            self._fire_bullet()
         else: # other key event
             self._undef_events(event)
                
@@ -103,12 +109,20 @@ class AlienInvasion:
                 self.logs.logger.info("User pressed q to quit game.")
                 sys.exit()
 
+    def _fire_bullet(self):
+        """Create a new bullet and add it to the bullets group."""
+
+        self.logs.logger.info("Bullet created.")
+        new_bullet = Bullet(self)
+        self.bullets.add(new_bullet)
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
 
         # Redraw the screen during each pass through the loop
         self.screen.fill(self.settings.bg_color)
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
         self.ship.blitme()
 
         # Make the most recently drawn screen visible
