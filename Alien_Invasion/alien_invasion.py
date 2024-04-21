@@ -47,6 +47,13 @@ class AlienInvasion:
             self._check_events()
             self.ship.update()
             self.bullets.update()
+
+            # Get rid of bullets that are no longer needed
+            for bullet in self.bullets.copy():
+                if bullet.rect.bottom <= 0:
+                    self.bullets.remove(bullet)
+                    self.logs.logger.info(f"Deleting bullet outside window. {len(self.bullets)} bullets remain.")
+
             self._update_screen()
 
             # cycle pacing (ticks per second)
@@ -111,11 +118,12 @@ class AlienInvasion:
 
 
     def _fire_bullet(self):
-        """Create a new bullet and add it to the bullets group."""
+        """Create a new bullet and add it to the bullets group.""" 
 
         self.logs.logger.info("Bullet created.")
         new_bullet = Bullet(self)
         self.bullets.add(new_bullet)
+        self.logs.logger.info(f"Current # of Bullets: {len(self.bullets) + 1}.")
 
 
     def _update_screen(self):
