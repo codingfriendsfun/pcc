@@ -63,10 +63,19 @@ class AlienInvasion:
                     # Move the ship to the right
                     self.logs.logger.debug("Detected right arrow press.")
                     self.ship.moving_right = True
+                elif event.key == pygame.K_LEFT:
+                    # Move the ship to the left
+                    self.logs.logger.debug("Detected left arrow press.")
+                    self.ship.moving_left = True
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_RIGHT:
+                    # Stop moving the ship to the right
                     self.logs.logger.debug("Detected right arrow release.")
                     self.ship.moving_right = False
+                elif event.key == pygame.K_LEFT:
+                    # Stop moving the ship to the left
+                    self.logs.logger.debug("Detected left arrow release.")
+                    self.ship.moving_left = False
 
 
     def _update_screen(self):
