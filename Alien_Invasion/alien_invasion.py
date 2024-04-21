@@ -57,6 +57,11 @@ class AlienInvasion:
             if event.type == pygame.QUIT:
                 self.logs.logger.info("User chose to quit game.")
                 sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    # Move the ship to the right
+                    self.logs.logger.debug("Detected right arrow press.")
+                    self.ship.rect.x += 1
 
 
     def _update_screen(self):
