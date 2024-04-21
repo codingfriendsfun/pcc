@@ -38,6 +38,7 @@ class AlienInvasion:
     def run_game(self):
         """Start the main loop for the game."""
 
+        self.logs.logger.info("Starting game.")
         while True:
             # look for input
             self._check_events()
@@ -53,10 +54,11 @@ class AlienInvasion:
 
     def _check_events(self):
         """Respond to keypresses and mouse events"""
-        # Watch for quit
+        # Watch for input
         for event in pygame.event.get():
             # if user presses exit window button
             if event.type == pygame.QUIT:
+                self.logs.logger.info("User chose to quit game.")
                 sys.exit()
 
 
