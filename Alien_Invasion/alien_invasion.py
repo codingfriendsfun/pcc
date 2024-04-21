@@ -109,12 +109,14 @@ class AlienInvasion:
                 self.logs.logger.info("User pressed q to quit game.")
                 sys.exit()
 
+
     def _fire_bullet(self):
         """Create a new bullet and add it to the bullets group."""
 
         self.logs.logger.info("Bullet created.")
         new_bullet = Bullet(self)
         self.bullets.add(new_bullet)
+
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
