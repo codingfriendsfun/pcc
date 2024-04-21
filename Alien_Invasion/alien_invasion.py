@@ -47,10 +47,9 @@ class AlienInvasion:
 
             # cycle pacing (ticks per second)
             self.clock.tick(60)
-            
 
     def _check_events(self):
-        """Respond to keypresses and mouse events"""
+        """Respond to keypresses and mouse events."""
 
         # Watch for input
         for event in pygame.event.get():
@@ -58,24 +57,47 @@ class AlienInvasion:
             if event.type == pygame.QUIT:
                 self.logs.logger.info("User chose to quit game.")
                 sys.exit()
+
+            # else if key event
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RIGHT:
-                    # Move the ship to the right
-                    self.logs.logger.debug("Detected right arrow press.")
-                    self.ship.moving_right = True
-                elif event.key == pygame.K_LEFT:
-                    # Move the ship to the left
-                    self.logs.logger.debug("Detected left arrow press.")
-                    self.ship.moving_left = True
+                self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
-                if event.key == pygame.K_RIGHT:
-                    # Stop moving the ship to the right
-                    self.logs.logger.debug("Detected right arrow release.")
-                    self.ship.moving_right = False
-                elif event.key == pygame.K_LEFT:
-                    # Stop moving the ship to the left
-                    self.logs.logger.debug("Detected left arrow release.")
-                    self.ship.moving_left = False
+                self._check_keyup_events(event)
+
+
+    def _undef_events(self, event):
+        """Log unknown input events"""
+        self.logs.logger.debug(f"Unanticipated key event: \n\t- Event type: {pygame.event.event_name(event.type)}\n" +
+                                   f"\t- Event key: {pygame.key.name(event.key)}") 
+            
+
+    def _check_keydown_events(self, event):
+        """Respond to keypresses."""
+
+        if event.key == pygame.K_RIGHT:
+            # Move the ship to the right
+            self.logs.logger.debug("Detected right arrow press.")
+            self.ship.moving_right = True
+        elif event.key == pygame.K_LEFT:
+            # Move the ship to the left
+            self.logs.logger.debug("Detected left arrow press.")
+            self.ship.moving_left = True
+        else: # other key event
+            self._undef_events(event)
+               
+
+    def _check_keyup_events(self, event):
+        """Respond to key releases."""
+
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_RIGHT:
+                # Stop moving the ship to the right
+                self.logs.logger.debug("Detected right arrow release.")
+                self.ship.moving_right = False
+            elif event.key == pygame.K_LEFT:
+                # Stop moving the ship to the left
+                self.logs.logger.debug("Detected left arrow release.")
+                self.ship.moving_left = False
 
 
     def _update_screen(self):
