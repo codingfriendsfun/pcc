@@ -118,13 +118,22 @@ class AlienInvasion:
         if easy_clicked and not self.game_active:
             self._start_game()
 
+            # Reset game settings
+            self.settings.initialize_easy_settings()
+
         normal_clicked = self.normal_mode.rect.collidepoint(mouse_pos)
         if normal_clicked and not self.game_active:
             self._start_game()
+            
+            # Reset game settings
+            self.settings.initialize_normal_settings()
 
         hard_clicked = self.hard_mode.rect.collidepoint(mouse_pos)
         if hard_clicked and not self.game_active:
             self._start_game()
+
+            # Reset game settings
+            self.settings.initialize_hard_settings()
 
     
     def _start_game(self):
@@ -132,9 +141,6 @@ class AlienInvasion:
         # Reset game stats
         self.stats.reset_stats()
         self.game_active = True
-
-        # Reset game settings
-        self.settings.initialize_dynamic_settings()
 
         # Get rid of remaining bullets/aliens
         self.bullets.empty()
@@ -146,7 +152,6 @@ class AlienInvasion:
 
         # Hide mouse cursor
         pygame.mouse.set_visible(False)
-
 
 
     def _check_keydown_events(self, event):
@@ -167,10 +172,6 @@ class AlienInvasion:
             self.ship.moving_left = True
         elif event.key == pygame.K_d:
             self.ship.moving_right = True
-
-        # Start game with space bar (makes more sense than P)
-        elif event.key == pygame.K_SPACE and not self.game_active:
-            self._start_game()
 
 
     def _check_keyup_events(self, event):
