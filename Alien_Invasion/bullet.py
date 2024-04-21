@@ -10,10 +10,12 @@ class Bullet(Sprite):
     def __init__(self, ai_game):
         """Create a bullet object at the ship's current position."""
 
-        self.logs = AlienLogger(__name__)
-        self.logs.logger.info(f"Initializing Bullet.")
-
         super().__init__()
+        self.id = id(self)
+
+        self.logs = AlienLogger(__name__)
+        self.logs.logger.info(f"Initializing Bullet {self.id}.")
+
         self.screen = ai_game.screen
         self.settings = ai_game.settings
         self.color = self.settings.bullet_color
@@ -29,7 +31,8 @@ class Bullet(Sprite):
     def update(self):
         """Move the bullet up the screen."""
 
-        self.logs.logger.debug(f"Moving bullet at speed {self.settings.bullet_speed}")
+        self.logs.logger.debug(f"Moving bullet {self.id} at speed " + 
+                                f"{self.settings.bullet_speed}")
 
         # Update the exact position of the bullet.
         self.y -= self.settings.bullet_speed
