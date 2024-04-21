@@ -42,6 +42,7 @@ class AlienInvasion:
         while True:
             # look for input
             self._check_events()
+            self.ship.update()
             self._update_screen()
 
             # cycle pacing (ticks per second)
@@ -61,7 +62,11 @@ class AlienInvasion:
                 if event.key == pygame.K_RIGHT:
                     # Move the ship to the right
                     self.logs.logger.debug("Detected right arrow press.")
-                    self.ship.rect.x += 1
+                    self.ship.moving_right = True
+            elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_RIGHT:
+                    self.logs.logger.debug("Detected right arrow release.")
+                    self.ship.moving_right = False
 
 
     def _update_screen(self):
