@@ -45,15 +45,10 @@ class AlienInvasion:
         while True:
             # look for input
             self._check_events()
+            
+            # update elements
             self.ship.update()
-            self.bullets.update()
-
-            # Get rid of bullets that are no longer needed
-            for bullet in self.bullets.copy():
-                if bullet.rect.bottom <= 0:
-                    self.bullets.remove(bullet)
-                    self.logs.logger.info(f"Deleting bullet outside window. {len(self.bullets)} bullets remain.")
-
+            self._update_bullets()
             self._update_screen()
 
             # cycle pacing (ticks per second)
@@ -127,6 +122,17 @@ class AlienInvasion:
                                     f"{len(self.bullets)}.")
         else: # too many bullets
             self.logs.logger.info("Max bullet limit reached.")
+
+    
+    def _update_bullets(self):
+        self.bullets.update()
+
+        # Get rid of bullets that are no longer needed
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
+                self.logs.logger.info(f"Deleting bullet outside window. " +
+                                        f"{len(self.bullets)} bullets remain.")
 
 
     def _update_screen(self):
