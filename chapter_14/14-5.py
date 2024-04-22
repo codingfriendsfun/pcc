@@ -1,4 +1,5 @@
 import sys
+import json
 from time import sleep
 from pathlib import Path
 
@@ -8,9 +9,9 @@ from settings5 import Settings
 from ship5 import Ship
 from bullet import Bullet
 from alien import Alien
-from game_stats import GameStats
+from game_stats5 import GameStats
 from button5 import Button
-from scoreboard import Scoreboard
+from scoreboard5 import Scoreboard
 
 
 class AlienInvasion:
@@ -42,9 +43,6 @@ class AlienInvasion:
         # Make Play button
         self.play_button = Button(self, "Play")
 
-        # Set up Path for saving High Score
-        self.path = Path('./chapter14/')
-
 
     def run_game(self):
         """Start main loop for game"""
@@ -64,6 +62,8 @@ class AlienInvasion:
         """Respond to keypresses and mouse events"""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                path = Path('chapter_14/high_score.json')
+                path.write_text(json.dumps(self.stats.high_score))
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
                 self._check_keydown_events(event)
@@ -79,6 +79,8 @@ class AlienInvasion:
     def _check_keydown_events(self, event):
         """Respond to keypresses"""
         if event.key == pygame.K_ESCAPE:
+            path = Path('chapter_14/high_score.json')
+            path.write_text(json.dumps(self.stats.high_score))
             sys.exit()
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()
