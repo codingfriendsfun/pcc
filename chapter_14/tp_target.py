@@ -1,5 +1,6 @@
 import pygame
 
+
 class Target:
     """A class to manage the target"""
 

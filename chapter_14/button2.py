@@ -1,5 +1,6 @@
 import pygame.font
 
+
 class Button:
     """Class for button building"""
 
@@ -94,4 +95,3 @@ class HardButton(Button):
                                           self.button_color)
         self.msg_image_rect = self.msg_image.get_rect()
         self.msg_image_rect.center = (925, 400)
-

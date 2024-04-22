@@ -10,6 +10,7 @@ from tp_target import Target
 from tp_game_stats import GameStats
 from button import Button
 
+
 class TargetPractice:
     """Overall class to manage game assets and behaviors"""
 

@@ -29,3 +29,4 @@ class Settings:
         self.target_color = (205, 205, 205)
         # target_direction 1 is down, -1 is up
         self.target_direction = 1
+        

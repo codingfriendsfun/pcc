@@ -10,3 +10,4 @@ class GameStats:
     def reset_stats(self):
         """Initialize stats that can change during the game"""
         self.misses_left = self.settings.bullet_misses
+        

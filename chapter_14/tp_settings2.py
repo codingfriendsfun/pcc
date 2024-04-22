@@ -1,6 +1,7 @@
 import pygame
 from pygame.sprite import Sprite
 
+
 class Settings:
     """A class to store settings for Target Practice"""
     

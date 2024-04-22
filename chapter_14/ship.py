@@ -24,6 +24,7 @@ class Ship:
         self.moving_right = False
         self.moving_left = False
 
+
     def update(self):
         """Update the ship's position based on movement flags."""
         # Update the ship's x value, not the rect.
@@ -34,6 +35,7 @@ class Ship:
             
         # Update rect object from self.x.
         self.rect.x = self.x
+
 
     def blitme(self):
         """Draw the ship at its current location."""
