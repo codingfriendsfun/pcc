@@ -8,6 +8,7 @@ from ss_game_stats import GameStats
 from ss_ship import Ship
 from ss_bullet import Bullet
 from ss_alien import Alien
+from ss_button import Button
 
 class SidewaysShooter:
     """Overall class to manage game assets and behavior"""
@@ -32,7 +33,24 @@ class SidewaysShooter:
         self._create_fleet()
 
         # Start game in active state
-        self.game_active = True
+        self.game_active = False
+
+        # Play button
+        self.play_button = Button(self, "Play")
+
+
+    def run_game(self):
+        """Start main game loop"""
+        while True: 
+            self._check_events()
+
+            if self.game_active:
+                self.ship.update()
+                self._update_bullets()
+                self._update_aliens()
+            
+            self._update_screen()
+            self.clock.tick(60)
 
 
     def _create_fleet(self):
@@ -75,20 +93,6 @@ class SidewaysShooter:
         for alien in self.aliens.sprites():
             alien.rect.x += self.settings.fleet_drop_speed
         self.settings.fleet_direction *= -1
-        
-
-    def run_game(self):
-        """Start main game loop"""
-        while True: 
-            self._check_events()
-
-            if self.game_active:
-                self.ship.update()
-                self._update_bullets()
-                self._update_aliens()
-            
-            self._update_screen()
-            self.clock.tick(60)
 
 
     def _check_events(self):
@@ -223,6 +227,10 @@ class SidewaysShooter:
             bullet.draw_bullet()
         self.ship.blitme()
         self.aliens.draw(self.screen)
+
+        # Draw play button if game inactive
+        if not self.game_active:
+            self.play_button.draw_button()
 
         pygame.display.flip()
 
