@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pygame
 
-from settings5 import Settings
+from settings6 import Settings
 from ship5 import Ship
 from bullet import Bullet
 from alien import Alien
@@ -31,6 +31,7 @@ class AlienInvasion:
         self.stats = GameStats(self)
         self.sb = Scoreboard(self)
 
+        # Create game sprites
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
@@ -62,9 +63,7 @@ class AlienInvasion:
         """Respond to keypresses and mouse events"""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                path = Path('chapter_14/high_score.json')
-                path.write_text(json.dumps(self.stats.high_score))
-                sys.exit()
+                self._exit_game()
             elif event.type == pygame.KEYDOWN:
                 self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
@@ -79,9 +78,7 @@ class AlienInvasion:
     def _check_keydown_events(self, event):
         """Respond to keypresses"""
         if event.key == pygame.K_ESCAPE:
-            path = Path('chapter_14/high_score.json')
-            path.write_text(json.dumps(self.stats.high_score))
-            sys.exit()
+            self._exit_game()
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()
 
@@ -119,9 +116,7 @@ class AlienInvasion:
 
             # Reset game stats
             self.stats.reset_stats()
-            self.sb.prep_score()
-            self.sb.prep_level()
-            self.sb.prep_ships()
+            self.sb._prep_images()
             self.game_active = True
 
             # Get rid of any remaining bullets/aliens
@@ -131,6 +126,12 @@ class AlienInvasion:
             # Create new fleet; center ship
             self._create_fleet()
             self.ship.center_ship()
+
+
+    def _exit_game(self):
+        path = Path('chapter_14/high_score.json')
+        path.write_text(json.dumps(self.stats.high_score))
+        sys.exit()
 
 
     # Bullet functions
@@ -168,14 +169,19 @@ class AlienInvasion:
             self.sb.check_high_score()
         
         if not self.aliens:
-            # Destroy existing bullets; create new fleet
-            self.bullets.empty()
-            self._create_fleet()
-            self.settings.increase_speed()
+            self._start_new_level()
 
-            # Increase level
-            self.stats.level += 1
-            self.sb.prep_level()
+
+    def _start_new_level(self):
+        """After successfully destroying one fleet, start next level"""
+         # Destroy existing bullets; create new fleet
+        self.bullets.empty()
+        self._create_fleet()
+        self.settings.increase_speed()
+
+        # Increase level
+        self.stats.level += 1
+        self.sb.prep_level()
 
 
     # Ship functions
