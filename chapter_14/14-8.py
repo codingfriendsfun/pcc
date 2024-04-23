@@ -171,7 +171,7 @@ class SidewaysShooter:
             # Destroy existing bullets and create new fleet
             self.bullets.empty()
             self._create_fleet()
-
+ 
 
     def _update_aliens(self):
         """Check if fleet is at edge of screen; then update posotions"""
