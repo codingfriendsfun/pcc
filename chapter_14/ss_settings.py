@@ -2,7 +2,13 @@ class Settings:
     """A class to store settings for Sideways Shooter"""
 
     def __init__(self):
-        """Initialize game's static settings"""
+        """Initialize game's settings"""
+        self._initialize_static_settings()
+        self.initialize_dynamic_settings()
+
+    
+    def _initialize_static_settings(self):
+        """Initialize settings that won't change through game"""
         # Screen settings
         self.screen_width = 1200
         self.screen_height = 700
@@ -25,8 +31,6 @@ class Settings:
         self.speedup_scale = 1.1
         # How quickly alien point values increase
         self.score_scale = 1.5
-
-        self.initialize_dynamic_settings()
 
 
     def initialize_dynamic_settings(self):
