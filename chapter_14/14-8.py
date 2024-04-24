@@ -159,6 +159,7 @@ class SidewaysShooter:
             # Reset game stats
             self.stats.reset_stats()
             self.game_active = True
+            self.sb.prep_score()
 
             # Remove bullets/aliens
             self.bullets.empty()
