@@ -159,15 +159,7 @@ class SidewaysShooter:
             self.sb.prep_score()
         
         if not self.aliens:
-            # Destroy existing bullets and create new fleet
-            self.bullets.empty()
-            self._create_fleet()
-            self.settings.increase_speed()
-
-            # Increase level
-            self.stats.level += 1 
-            self.sb.prep_level()
-            self.sb.check_high_score()
+            self._level_up()
 
 
     # Ship Functions
@@ -261,6 +253,19 @@ class SidewaysShooter:
 
 
     # System functions
+
+    def _level_up(self):
+        """Process completing a level and starting a new one"""
+        # Destroy existing bullets and create new fleet
+        self.bullets.empty()
+        self._create_fleet()
+        self.settings.increase_speed()
+
+        # Increase level
+        self.stats.level += 1 
+        self.sb.prep_level()
+        self.sb.check_high_score()
+
 
     def _end_game(self):
         """Process closing the game"""
