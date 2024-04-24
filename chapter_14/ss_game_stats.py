@@ -7,6 +7,9 @@ class GameStats:
         self.reset_stats()
         self.alien_hits = 0
 
+        # High score should never be reset
+        self.high_score = 0
+
     
     def reset_stats(self):
         """Initialize stats that can change during game"""
