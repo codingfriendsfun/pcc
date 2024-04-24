@@ -1,25 +1,40 @@
 import pygame.font
+from pygame.sprite import Group
+
+from ss_ship import SmallShip
 
 
 class Scoreboard:
     """Class to report scoring info"""
 
-    def __init__(self, ai_game):
+    def __init__(self, ss_game):
         """Initialize scorekeeping attributes"""
-        self.screen = ai_game.screen
+        self.ss_game = ss_game
+        self.screen = ss_game.screen
         self.screen_rect = self.screen.get_rect()
-        self.settings = ai_game.settings
-        self.stats = ai_game.stats
+        self.settings = ss_game.settings
+        self.stats = ss_game.stats
 
         # Font settings for score info
         self.text_color = (105, 105, 105)
         self.font = pygame.font.SysFont(None, 32)
 
-        # Prep initial score and level images
+        # Prep initial images
         self.prep_score()
         self.prep_high_score()
         self.prep_level()
+        self.prep_ships()
 
+
+    def prep_ships(self):
+        """Show ships left"""
+        self.ships = Group()
+        for ship_number in range(self.stats.ships_left):
+            ship = SmallShip(self.ss_game)
+            ship.rect.x = 4 + ship_number * ship.rect.width
+            ship.rect.y = 4
+            self.ships.add(ship)
+            
 
     def prep_level(self):
         """Turn level into rendered image"""
@@ -64,6 +79,7 @@ class Scoreboard:
         self.screen.blit(self.score_image, self.score_rect)
         self.screen.blit(self.high_score_image, self.high_score_rect)
         self.screen.blit(self.level_image, self.level_rect)
+        self.ships.draw(self.screen)
 
 
     def check_high_score(self):

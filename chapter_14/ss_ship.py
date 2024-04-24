@@ -1,4 +1,6 @@
 import pygame
+from pygame.sprite import Sprite
+
 
 class Ship:
     """Class to manage the ship"""
@@ -45,4 +47,15 @@ class Ship:
     def blitme(self):
         """Draw ship at current location"""
         self.screen.blit(self.image, self.rect)
+
+
+class SmallShip(Sprite):
+    """A class to manage the score ship"""
+
+    def __init__(self, ss_game):
+        super().__init__()
+
+        # Only difference is which image it uses; needs diff bg color
+        self.image = pygame.image.load('chapter_14/smallship.bmp')
+        self.rect = self.image.get_rect()
         
