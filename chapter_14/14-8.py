@@ -12,7 +12,7 @@ from ss_button import Button
 from ss_scoreboard import Scoreboard
 from ss_border import Border
 
-class SidewaysShooter:
+class SidewaysShooter: 
     """Overall class to manage game assets and behavior"""
 
     def __init__(self):
@@ -209,6 +209,7 @@ class SidewaysShooter:
             # Destroy existing bullets and create new fleet
             self.bullets.empty()
             self._create_fleet()
+            self.settings.increase_speed()
  
 
     def _update_aliens(self):
