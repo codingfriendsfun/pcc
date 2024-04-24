@@ -8,7 +8,7 @@ class Border:
         self.color = (0, 0, 0)
 
         # Create rect
-        self.rect = pygame.Rect(0, 0, 1200, 50)
+        self.rect = pygame.Rect(0, 0, 1200, 52)
 
     def draw_border(self):
         """Draw border to screen"""
