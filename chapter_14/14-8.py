@@ -9,6 +9,7 @@ from ss_ship import Ship
 from ss_bullet import Bullet
 from ss_alien import Alien
 from ss_button import Button
+from ss_scoreboard import Scoreboard
 
 class SidewaysShooter:
     """Overall class to manage game assets and behavior"""
@@ -23,8 +24,9 @@ class SidewaysShooter:
             (self.settings.screen_width, self.settings.screen_height) )
         pygame.display.set_caption("Sideways Shooter")
 
-        # Create instance to store game stats
+        # Create instance to store game stats and score
         self.stats = GameStats(self)
+        self.sb = Scoreboard(self)
 
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
@@ -253,6 +255,9 @@ class SidewaysShooter:
             bullet.draw_bullet()
         self.ship.blitme()
         self.aliens.draw(self.screen)
+
+        # Draw scoreboard
+        self.sb.show_score()
 
         # Draw play button if game inactive
         if not self.game_active:
