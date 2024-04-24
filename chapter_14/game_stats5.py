@@ -15,6 +15,7 @@ class GameStats:
             self.high_score = json.loads(path.read_text())
         else:
             self.high_score = 0
+        self.start_high_score = self.high_score
 
 
     def reset_stats(self):

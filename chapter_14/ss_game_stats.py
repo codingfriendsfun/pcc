@@ -1,3 +1,6 @@
+import json
+from pathlib import Path
+
 class GameStats:
     """Track statistics for Sideways Shooter"""
 
@@ -8,7 +11,12 @@ class GameStats:
         self.alien_hits = 0
 
         # High score should never be reset
-        self.high_score = 0
+        path = Path('chapter_14/ss_high_score.json')
+        if path.exists():
+            self.high_score = json.loads(path.read_text())
+        else:
+            self.high_score = 0
+        self.start_high_score = self.high_score
 
     
     def reset_stats(self):

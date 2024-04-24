@@ -1,5 +1,7 @@
 import sys
+import json
 from time import sleep
+from pathlib import Path
 
 import pygame
 
@@ -68,7 +70,7 @@ class SidewaysShooter:
         """Respond to keypresses and mouse events"""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                sys.exit()
+                self._end_game()
             elif event.type == pygame.KEYDOWN:
                 self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
@@ -81,7 +83,7 @@ class SidewaysShooter:
     def _check_keydown_events(self, event):
         """Respond to keypresses"""
         if event.key == pygame.K_ESCAPE:
-            sys.exit()
+            self._end_game()
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()
 
@@ -259,6 +261,15 @@ class SidewaysShooter:
 
 
     # System functions
+
+    def _end_game(self):
+        """Process closing the game"""
+        # Process high score
+        if self.stats.high_score > self.stats.start_high_score:
+            path = Path('chapter_14/ss_high_score.json')
+            path.write_text(json.dumps(self.stats.high_score))
+        sys.exit()        
+
 
     def _start_game(self):
         """Start the game"""
