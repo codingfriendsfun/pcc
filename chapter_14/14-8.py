@@ -146,8 +146,19 @@ class SidewaysShooter:
 
     def _check_play_button(self, mouse_pos):
         """Start new game when player clicks Play"""
-        if self.play_button.rect.collidepoint(mouse_pos):
+        button_clicked = self.play_button.rect.collidepoint(mouse_pos)
+        if button_clicked and not self.game_active:
+            # Reset game stats
+            self.stats.reset_stats()
             self.game_active = True
+
+            # Remove bullets/aliens
+            self.bullets.empty()
+            self.aliens.empty()
+
+            # Create new ship; center it
+            self._create_fleet()
+            self.ship.center_ship()
 
 
     def _fire_bullet(self):
