@@ -160,6 +160,9 @@ class SidewaysShooter:
             self._create_fleet()
             self.ship.center_ship()
 
+            # Hide cursor
+            pygame.mouse.set_visible(False)
+
 
     def _fire_bullet(self):
         """Create new bullet; add bullets to group"""
@@ -237,7 +240,7 @@ class SidewaysShooter:
             sleep(0.5)
         else:
             self.game_active = False
-            print(f"You hit {self.stats.alien_hits}")
+            pygame.mouse.set_visible(True)
 
     
     def _update_screen(self):
