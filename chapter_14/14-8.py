@@ -104,6 +104,9 @@ class SidewaysShooter:
                 self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                self._check_play_button(mouse_pos)
 
 
     def _check_keydown_events(self, event):
@@ -140,7 +143,13 @@ class SidewaysShooter:
         elif event.key == pygame.K_s:
             self.ship.moving_down = False
 
-        
+
+    def _check_play_button(self, mouse_pos):
+        """Start new game when player clicks Play"""
+        if self.play_button.rect.collidepoint(mouse_pos):
+            self.game_active = True
+
+
     def _fire_bullet(self):
         """Create new bullet; add bullets to group"""
         if len(self.bullets) < self.settings.bullets_allowed:
