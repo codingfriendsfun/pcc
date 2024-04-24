@@ -40,6 +40,7 @@ class Settings:
 
         # Score settings
         self.alien_points = 50
+        self.bullet_miss_pts = -10
 
 
     def increase_speed(self):

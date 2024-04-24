@@ -179,6 +179,7 @@ class SidewaysShooter:
         # Hide cursor
         pygame.mouse.set_visible(False)
 
+
     def _fire_bullet(self):
         """Create new bullet; add bullets to group"""
         if len(self.bullets) < self.settings.bullets_allowed:
@@ -195,6 +196,8 @@ class SidewaysShooter:
         right_edge = self.settings.screen_width
         for bullet in self.bullets.copy():
             if bullet.rect.right >= right_edge:
+                self.stats.score += self.settings.bullet_miss_pts
+                self.sb.prep_score()
                 self.bullets.remove(bullet)
 
         self._check_bullet_alien_collisions()
