@@ -23,9 +23,13 @@ class SidewaysShooter:
 
         self.screen = pygame.display.set_mode(
             (self.settings.screen_width, self.settings.screen_height) )
-        
         pygame.display.set_caption("Sideways Shooter")
 
+        self._load_game_images()
+
+    
+    def _load_game_images(self):
+        """Instance to store initializing of game icons/images/etc"""
         # Create instance to store game stats and score
         self.stats = GameStats(self)
         self.sb = Scoreboard(self)
