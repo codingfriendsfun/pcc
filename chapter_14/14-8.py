@@ -62,47 +62,7 @@ class SidewaysShooter:
             self.clock.tick(60)
 
 
-    def _create_fleet(self):
-        """Create fleet of aliens"""
-        # Create alien; add more aliens until out of room
-        # Spacing between aliens is 1 alien width/height
-        alien = Alien(self)
-        alien_width, alien_height = alien.rect.size
-
-        current_x, current_y = (alien_width * 3), alien_height
-        while current_x < (self.settings.screen_width - 1 * alien_width):
-            while current_y < (self.settings.screen_height - 1 * alien_height):
-                self._create_alien(current_x, current_y)
-                current_y += 2 * alien_width
-
-            # Finished column; reset y, increment x
-            current_y = alien_height
-            current_x += 2 * alien_width
-
-
-    def _create_alien(self, x_position, y_position):
-        """Create alien, place it in column"""
-        new_alien = Alien(self)
-        new_alien.y = y_position
-        new_alien.rect.y = y_position
-        new_alien.rect.x = x_position
-        self.aliens.add(new_alien)
-
-
-    def _check_fleet_edges(self):
-        """Respond appropriately when alien reaches edge of screen"""
-        for alien in self.aliens.sprites():
-            if alien.check_edges():
-                self._change_fleet_direction()
-                break
-
-        
-    def _change_fleet_direction(self):
-        """Shift fleet left and change direction"""
-        for alien in self.aliens.sprites():
-            alien.rect.x += self.settings.fleet_drop_speed
-        self.settings.fleet_direction *= -1
-
+    # Keyboard/mouse input
 
     def _check_events(self):
         """Respond to keypresses and mouse events"""
@@ -160,29 +120,7 @@ class SidewaysShooter:
             self._start_game()
 
 
-    def _start_game(self):
-        """Start the game"""
-        # Reset game settings
-        self.settings.initialize_dynamic_settings()
-
-        # Reset game stats
-        self.stats.reset_stats()
-        self.game_active = True
-        self.sb.prep_score()
-        self.sb.prep_level()
-        self.sb.prep_ships()
-
-        # Remove bullets/aliens
-        self.bullets.empty()
-        self.aliens.empty()
-
-        # Create new ship; center it
-        self._create_fleet()
-        self.ship.center_ship()
-
-        # Hide cursor
-        pygame.mouse.set_visible(False)
-
+    # Bullet Functions
 
     def _fire_bullet(self):
         """Create new bullet; add bullets to group"""
@@ -228,6 +166,74 @@ class SidewaysShooter:
             self.stats.level += 1 
             self.sb.prep_level()
             self.sb.check_high_score()
+
+
+    # Ship Functions
+
+    def _ship_hit(self):
+        """Respond to the ship being hit by an alien"""
+        if self.stats.ships_left > 0:
+            # Decrement ships_left; update scoreboard
+            self.stats.ships_left -= 1
+            self.sb.prep_ships()
+
+            # Get rid of remaining bullets/aliens
+            self.bullets.empty()
+            self.aliens.empty()
+
+            # Create new fleet; center ship
+            self._create_fleet()
+            self.ship.center_ship()
+
+            # Pause
+            sleep(0.5)
+        else:
+            self.game_active = False
+            pygame.mouse.set_visible(True)
+
+
+    # Alien Functions
+
+    def _create_fleet(self):
+        """Create fleet of aliens"""
+        # Create alien; add more aliens until out of room
+        # Spacing between aliens is 1 alien width/height
+        alien = Alien(self)
+        alien_width, alien_height = alien.rect.size
+
+        current_x, current_y = (alien_width * 3), alien_height
+        while current_x < (self.settings.screen_width - 1 * alien_width):
+            while current_y < (self.settings.screen_height - 1 * alien_height):
+                self._create_alien(current_x, current_y)
+                current_y += 2 * alien_width
+
+            # Finished column; reset y, increment x
+            current_y = alien_height
+            current_x += 2 * alien_width
+
+
+    def _create_alien(self, x_position, y_position):
+        """Create alien, place it in column"""
+        new_alien = Alien(self)
+        new_alien.y = y_position
+        new_alien.rect.y = y_position
+        new_alien.rect.x = x_position
+        self.aliens.add(new_alien)
+
+
+    def _check_fleet_edges(self):
+        """Respond appropriately when alien reaches edge of screen"""
+        for alien in self.aliens.sprites():
+            if alien.check_edges():
+                self._change_fleet_direction()
+                break
+
+        
+    def _change_fleet_direction(self):
+        """Shift fleet left and change direction"""
+        for alien in self.aliens.sprites():
+            alien.rect.x += self.settings.fleet_drop_speed
+        self.settings.fleet_direction *= -1
  
 
     def _update_aliens(self):
@@ -252,28 +258,32 @@ class SidewaysShooter:
                 break
 
 
-    def _ship_hit(self):
-        """Respond to the ship being hit by an alien"""
-        if self.stats.ships_left > 0:
-            # Decrement ships_left; update scoreboard
-            self.stats.ships_left -= 1
-            self.sb.prep_ships()
+    # System functions
 
-            # Get rid of remaining bullets/aliens
-            self.bullets.empty()
-            self.aliens.empty()
+    def _start_game(self):
+        """Start the game"""
+        # Reset game settings
+        self.settings.initialize_dynamic_settings()
 
-            # Create new fleet; center ship
-            self._create_fleet()
-            self.ship.center_ship()
+        # Reset game stats
+        self.stats.reset_stats()
+        self.game_active = True
+        self.sb.prep_score()
+        self.sb.prep_level()
+        self.sb.prep_ships()
 
-            # Pause
-            sleep(0.5)
-        else:
-            self.game_active = False
-            pygame.mouse.set_visible(True)
+        # Remove bullets/aliens
+        self.bullets.empty()
+        self.aliens.empty()
 
-    
+        # Create new ship; center it
+        self._create_fleet()
+        self.ship.center_ship()
+
+        # Hide cursor
+        pygame.mouse.set_visible(False)
+
+
     def _update_screen(self):
         """Update images on screen; flip to new screen"""
         self.screen.fill(self.settings.bg_color)
