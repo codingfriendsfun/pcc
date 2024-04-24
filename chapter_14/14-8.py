@@ -153,27 +153,31 @@ class SidewaysShooter:
         """Start new game when player clicks Play"""
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
         if button_clicked and not self.game_active:
-            # Reset game settings
-            self.settings.initialize_dynamic_settings()
+            self._start_game()
 
-            # Reset game stats
-            self.stats.reset_stats()
-            self.game_active = True
-            self.sb.prep_score()
-            self.sb.prep_level()
-            self.sb.prep_ships()
 
-            # Remove bullets/aliens
-            self.bullets.empty()
-            self.aliens.empty()
+    def _start_game(self):
+        """Start the game"""
+        # Reset game settings
+        self.settings.initialize_dynamic_settings()
 
-            # Create new ship; center it
-            self._create_fleet()
-            self.ship.center_ship()
+        # Reset game stats
+        self.stats.reset_stats()
+        self.game_active = True
+        self.sb.prep_score()
+        self.sb.prep_level()
+        self.sb.prep_ships()
 
-            # Hide cursor
-            pygame.mouse.set_visible(False)
+        # Remove bullets/aliens
+        self.bullets.empty()
+        self.aliens.empty()
 
+        # Create new ship; center it
+        self._create_fleet()
+        self.ship.center_ship()
+
+        # Hide cursor
+        pygame.mouse.set_visible(False)
 
     def _fire_bullet(self):
         """Create new bullet; add bullets to group"""
