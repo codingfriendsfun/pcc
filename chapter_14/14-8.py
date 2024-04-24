@@ -213,7 +213,6 @@ class SidewaysShooter:
             for aliens in collisions.values():
                 self.stats.score += self.settings.alien_points * len(aliens)
             self.sb.prep_score()
-            self.sb.check_high_score()
         
         if not self.aliens:
             # Destroy existing bullets and create new fleet
@@ -224,6 +223,7 @@ class SidewaysShooter:
             # Increase level
             self.stats.level += 1 
             self.sb.prep_level()
+            self.sb.check_high_score()
  
 
     def _update_aliens(self):
