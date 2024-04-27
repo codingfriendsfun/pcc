@@ -81,6 +81,7 @@ class AlienInvasion:
 
     def _fire_bullet(self):
         """Create a new bullet and add it to the bullets group."""
+        
         new_bullet = Bullet(self)
         self.bullets.add(new_bullet)
 
@@ -89,6 +90,7 @@ class AlienInvasion:
         """Update images on the screen, and flip to the new screen."""
        
         self.screen.fill(self.settings.bg_color)
+
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
             
