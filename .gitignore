@@ -59,3 +59,7 @@ chapter_15/mpl_squares.py
 chapter_15/rw_visual.py
 chapter_15/scatter_squares.py
 chapter_15/__pycache__
+chapter_15/die.py
+chapter_15/die_visual.py
+chapter_15/dice_visual.py
+dice_visual.html
