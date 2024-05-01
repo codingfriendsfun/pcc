@@ -3,7 +3,6 @@ import numpy as np
 
 from die import Die
 
-plt.style.use('dark_background')
 
 # Create die
 die = Die()
@@ -22,6 +21,7 @@ for value in poss_results:
     frequencies.append(frequency)
 
 # Graph data
+plt.style.use('dark_background')
 fig = plt.figure()
 
 plt.bar(x=poss_results, height=frequencies)
