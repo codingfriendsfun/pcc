@@ -6,6 +6,7 @@ import pygame
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
+from alien import Alien
 from alien_logs import AlienLogger
 
 
@@ -36,6 +37,9 @@ class AlienInvasion:
         #initialize ship and other elements after window since ship uses window info
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
+        self.aliens = pygame.sprite.Group()
+
+        self._create_fleet()
 
 
     def run_game(self):
@@ -135,6 +139,13 @@ class AlienInvasion:
                                         f"{len(self.bullets)} bullets remain.")
 
 
+    def _create_fleet(self):
+        """Create the fleet of aliens."""
+
+        # Make an alien
+        self.aliens.add(Alien(self))
+
+
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
 
@@ -143,6 +154,7 @@ class AlienInvasion:
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         self.ship.blitme()
+        self.aliens.draw(self.screen)
 
         # Make the most recently drawn screen visible
         self.logs.logger.debug("Updating screen.")
