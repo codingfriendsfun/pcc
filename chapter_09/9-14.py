@@ -32,7 +32,7 @@ class Lottery:
     def draw_ticket(self):
         """Draw a lottery ticket, run until users ticket wins."""
 
-        options = [[num for num in range(1, 10)], 'a', 'c', 'b', 'd', 'f']
+        options = [[num for num in range(1, 10)], "a", "c", "b", "d", "f"]
         draw_ticket = sample(options, 4)
 
         if self.lottery_ticket == draw_ticket:
