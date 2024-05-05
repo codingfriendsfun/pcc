@@ -6,6 +6,7 @@ def make_album(artist_name, artist_title, song_number=None):
     
     return album
 
+
 #create albums using make_album()
 bop = make_album('MGK', 'lace up')
 flop = make_album('MGK', 'binge')
