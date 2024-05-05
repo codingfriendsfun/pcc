@@ -1,6 +1,8 @@
 from random import randint
 
 # Representing a 6 sided die with a method to roll the die
+
+
 class Dice:
     """Modeling a die."""
 
@@ -8,7 +10,6 @@ class Dice:
         """Initializing dice attributes."""
 
         self.sides = sides
-
 
     def roll_dice(self):
         """Roll a 6 sided die."""
@@ -18,6 +19,7 @@ class Dice:
             roll_number = randint(1, self.sides)
             print(f"You rolled a {roll_number}!")
             number_of_rolls -= 1
+
 
 # Instances of Dice() with varying numbers of sides.
 die_1 = Dice()

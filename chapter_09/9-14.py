@@ -23,7 +23,7 @@ class Lottery:
             new_ticket = []
 
             get_ticket = input(ticket_prompt)
-        
+
             new_ticket += get_ticket
             submit_ticket += 1
 
