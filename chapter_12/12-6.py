@@ -19,7 +19,7 @@ class Ship:
 
         # Start each new ship at the bottom center of the screen.
         self.rect.midleft = self.screen_rect.midleft
-        
+
         # Store a float for the ship's exact horizontal position.
         self.y = float(self.rect.y)
 
@@ -27,24 +27,23 @@ class Ship:
         self.moving_down = False
         self.moving_up = False
 
-
     def update(self):
         """Update the ship's position based on the movement flag."""
-        
-        # Update the ship's x value, not the rect.
+
+        # Update the ship's y value, not the rect.
         if self.moving_down and self.rect.bottom < self.screen_rect.bottom:
             self.y += self.settings.ship_speed
-        
+
         if self.moving_up and self.rect.top > 0:
             self.y -= self.settings.ship_speed
 
         # Update rect object from self.y.
         self.rect.y = self.y
 
-
     def blitme(self):
         """Draw the ship at its current location."""
         self.screen.blit(self.image, self.rect)
+
 
 class Settings:
     """A class to store all the settings for Alien Invasion."""
@@ -67,10 +66,8 @@ class Settings:
         self.bullets_allowed = 3
 
 
-
 class Bullet(Sprite):
     """A class to manage bullets fired from the ship."""
-
 
     def __init__(self, ai_game):
         """Create a bullet object at the ship's current position."""
@@ -81,13 +78,12 @@ class Bullet(Sprite):
         self.color = self.settings.bullet_color
 
         # Create a bullet rect at (0, 0) and then set correct position.
-        self.rect = pygame.Rect(0, 0, self.settings.bullet_width, 
+        self.rect = pygame.Rect(0, 0, self.settings.bullet_width,
                                 self.settings.bullet_height)
         self.rect.midright = ai_game.ship.rect.midright
 
         # Store the bullet's position as a float.
         self.x = float(self.rect.x)
-
 
     def update(self):
         """Move the bullet up the screen."""
@@ -97,12 +93,10 @@ class Bullet(Sprite):
         # Update the rect position.
         self.rect.x = self.x
 
-
     def draw_bullet(self):
         """Draw the bullet to the screen."""
 
         pygame.draw.rect(self.screen, self.color, self.rect)
-        
 
 
 class Alien(Sprite):
@@ -122,12 +116,8 @@ class Alien(Sprite):
         self.rect.x = self.rect.width
         self.rect.y = self.rect.height
 
-        # Store the alien's exact horizontal position.
+        # Store the alien's exact vertical position.
         self.y = float(self.rect.y)
-
-
-
-
 
 
 class AlienInvasion:
@@ -140,7 +130,7 @@ class AlienInvasion:
         self.clock = pygame.time.Clock()
         self.settings = Settings()
 
-        self.screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
+        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         self.settings.screen_width = self.screen.get_rect().width
         self.settings.screen_height = self.screen.get_rect().height
 
@@ -152,18 +142,15 @@ class AlienInvasion:
 
         self._create_fleet()
 
-
     def run_game(self):
         """Start the main loop for the game."""
 
         while True:
-
             self._check_events()
             self.ship.update()
             self._update_bullets()
             self._update_screen()
             self.clock.tick(60)
-
 
     def _check_events(self):
         """Respond to keypresses and mouse events."""
@@ -175,17 +162,16 @@ class AlienInvasion:
 
             elif event.type == pygame.KEYDOWN:
                 self._check_keydown_events(event)
-            
+
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
 
-    
     def _check_keydown_events(self, event):
         """Respond to keypresses."""
 
         if event.key == pygame.K_DOWN:
             self.ship.moving_down = True
-                
+
         elif event.key == pygame.K_UP:
             self.ship.moving_up = True
 
@@ -194,7 +180,6 @@ class AlienInvasion:
 
         elif event.key == pygame.K_q:
             sys.exit()
-
 
     def _check_keyup_events(self, event):
         """Respond to key releases."""
@@ -205,17 +190,15 @@ class AlienInvasion:
         elif event.key == pygame.K_UP:
             self.ship.moving_up = False
 
-
     def _fire_bullet(self):
         """Create a new bullet and add it to the bullets group."""
         if len(self.bullets) < self.settings.bullets_allowed:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
 
-
     def _update_bullets(self):
         """Update position of bullets and get rid of old bullets."""
-        
+
         # Update bullet position.
         self.bullets.update()
 
@@ -223,7 +206,6 @@ class AlienInvasion:
         for bullet in self.bullets.copy():
             if bullet.rect.x >= self.settings.screen_width:
                 self.bullets.remove(bullet)
-
 
     def _create_fleet(self):
         """Create the fleet of aliens."""
@@ -236,16 +218,14 @@ class AlienInvasion:
         current_x, current_y = (alien_width * 3), alien_height
 
         while current_x < (self.settings.screen_width - 2 * alien_width):
-           
-            while current_y < (self.settings.screen_height - alien_height):
 
+            while current_y < (self.settings.screen_height - alien_height):
                 self._create_alien(current_x, current_y)
                 current_y += 2 * alien_height
-            
-            # Finished a row; reset x value and increment y value.
+
+            # Finished a row; reset y value and increment x value.
             current_y = alien_height
             current_x += 2 * alien_width
-
 
     def _create_alien(self, x_position, y_position):
         """Create an alien and place it in the row."""
@@ -256,15 +236,14 @@ class AlienInvasion:
         new_alien.rect.x = x_position
         self.aliens.add(new_alien)
 
-
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
-       
+
         self.screen.fill(self.settings.bg_color)
 
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
-            
+
         self.ship.blitme()
         self.aliens.draw(self.screen)
 
