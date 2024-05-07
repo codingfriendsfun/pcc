@@ -71,3 +71,7 @@ weather_data/
 chapter_16/sitka_highs_lows.py
 chapter_16/sitka_highs.py
 chapter_16/death_valley_highs_lows.py
+chapter_16/eq_data_1_day_m1.geojson
+chapter_16/eq_explore_data.py
+chapter_16/readable_eq_data.geojson
+chapter_16/eq_data_30_day_m1.geojson
