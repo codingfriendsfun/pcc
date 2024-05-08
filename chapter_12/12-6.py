@@ -99,27 +99,6 @@ class Bullet(Sprite):
         pygame.draw.rect(self.screen, self.color, self.rect)
 
 
-class Alien(Sprite):
-    """A class to represent a single alien in the fleet."""
-
-    def __init__(self, ai_game):
-        """Initialize the alient and its starting position."""
-
-        super().__init__()
-        self.screen = ai_game.screen
-
-        # Load the alien image and set its rect attribute.
-        self.image = pygame.image.load('images/alien.bmp')
-        self.rect = self.image.get_rect()
-
-        # Start each new alien near the top left of the screen.
-        self.rect.x = self.rect.width
-        self.rect.y = self.rect.height
-
-        # Store the alien's exact vertical position.
-        self.y = float(self.rect.y)
-
-
 class AlienInvasion:
     """Overall class to manage game assets and behavior."""
 
@@ -138,9 +117,6 @@ class AlienInvasion:
 
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
-        self.aliens = pygame.sprite.Group()
-
-        self._create_fleet()
 
     def run_game(self):
         """Start the main loop for the game."""
@@ -207,35 +183,6 @@ class AlienInvasion:
             if bullet.rect.x >= self.settings.screen_width:
                 self.bullets.remove(bullet)
 
-    def _create_fleet(self):
-        """Create the fleet of aliens."""
-
-        # Create an alien and keep adding aliens until there is no room left.
-        # Spacing between aliens is one alien width and one alien height.
-        alien = Alien(self)
-        alien_width, alien_height = alien.rect.size
-
-        current_x, current_y = (alien_width * 3), alien_height
-
-        while current_x < (self.settings.screen_width - 2 * alien_width):
-
-            while current_y < (self.settings.screen_height - alien_height):
-                self._create_alien(current_x, current_y)
-                current_y += 2 * alien_height
-
-            # Finished a row; reset y value and increment x value.
-            current_y = alien_height
-            current_x += 2 * alien_width
-
-    def _create_alien(self, x_position, y_position):
-        """Create an alien and place it in the row."""
-
-        new_alien = Alien(self)
-        new_alien.y = y_position
-        new_alien.rect.y = y_position
-        new_alien.rect.x = x_position
-        self.aliens.add(new_alien)
-
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
 
@@ -245,7 +192,6 @@ class AlienInvasion:
             bullet.draw_bullet()
 
         self.ship.blitme()
-        self.aliens.draw(self.screen)
 
         pygame.display.flip()
 
