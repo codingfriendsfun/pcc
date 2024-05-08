@@ -104,8 +104,9 @@ class AlienInvasion:
 
 
     def _update_aliens(self):
-        """Update the positions of all aliens in te fleet."""
+        """Check if the fleet is at an edge, then update positions."""
 
+        self._check_fleet_edges
         self.aliens.update()
 
 
@@ -155,7 +156,7 @@ class AlienInvasion:
 
         for alien in self.aliens.sprites():
             alien.rect.y += self.settings.fleet_drop_speed
-            
+
         self.settings.fleet_direction *= -1
 
 
