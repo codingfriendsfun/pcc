@@ -28,7 +28,7 @@ class Rain(Sprite):
 
         screen_rect = self.screen.get_rect()
 
-        return (self.rect.bottom >= screen_rect.bottom) or (self.rect.top <= 0)
+        return (self.rect.bottom - (.5 * self.rect.height) >= screen_rect.bottom)
 
     def update(self):
         """Move the rain down."""
@@ -54,7 +54,6 @@ class MainGame:
 
         self.create_storm()
 
-
     def launch_window(self):
         """Display a blue window."""
 
@@ -69,13 +68,12 @@ class MainGame:
             self._update_rain()
 
             self.showers.draw(self.screen)
-            
 
             pygame.display.flip()
 
     def _update_rain(self):
         """Check if the storm is at an edge, then update positions."""
-
+        self._remove_rain_drop()
         self.showers.update()
 
     def create_storm(self):
@@ -106,9 +104,15 @@ class MainGame:
         new_rain_drop.y = y_position
         new_rain_drop.rect.x = x_position
         new_rain_drop.rect.y = y_position
+
         self.showers.add(new_rain_drop)
 
-    
+    def _remove_rain_drop(self):
+        """Remove raindrops if they fall off the screen."""
+
+        for raindrop in self.showers.copy():
+            if raindrop.check_edges():
+                raindrop.y = raindrop.rect.height
     
 
 if __name__ == '__main__':
