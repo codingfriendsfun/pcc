@@ -16,7 +16,7 @@ class Bullet(Sprite):
         self.rect.midright = ai_game.ship.rect.midright
 
         #store the bullet's position as a float
-        self.x = float(self.rect.x)
+        self.y = float(self.rect.y)
 
     def draw_bullet(self):
         """draw a bullet to the screen"""
@@ -24,6 +24,6 @@ class Bullet(Sprite):
 
     def update(self):
         """move the bullet up the screen"""
-        self.x +=self.settings.bullet_speed
+        self.y -=self.settings.bullet_speed
 
-        self.rect.x = self.x
+        self.rect.y = self.y
