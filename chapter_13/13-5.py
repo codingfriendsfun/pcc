@@ -246,7 +246,12 @@ class AlienInvasion:
             if bullet.rect.x >= self.settings.screen_width:
                 self.bullets.remove(bullet)
 
-        # Detect bullet collisions.
+        self._check_bullet_alien_collision()
+
+
+    def _check_bullet_alien_collision(self):
+        """Respond do alien-bullet collision."""
+
         collisions = pygame.sprite.groupcollide(
             self.bullets, self.aliens, True, True
         )
