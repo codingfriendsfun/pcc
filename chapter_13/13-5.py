@@ -70,6 +70,10 @@ class Settings:
 
         # Alien Settings
         self.alien_speed = 3.5
+        self.fleet_advance_speed = 20
+        
+        # fleet_direction of 1 represents down; -1 represents up
+        self.fleet_direction = 1
 
 
 class Bullet(Sprite):
@@ -131,10 +135,17 @@ class Alien(Sprite):
         self.y = float(self.rect.y)
 
 
+    def check_edges(self):
+        """Return True if alien hits the edge of a screen."""
+
+        screen_rect = self.screen.get_rect()
+        return (self.rect.bottom >= screen_rect.bottom) or (self.rect.top <= 0)
+
+
     def update(self):
         """Move the alien down."""
 
-        self.y += self.settings.alien_speed
+        self.y += self.settings.alien_speed * self.settings.fleet_direction
         self.rect.y = self.y
 
 
@@ -238,8 +249,26 @@ class AlienInvasion:
 
     def _update_aliens(self):
         """Update the position of all aliens in the fleet."""
-
+        self._check_fleet_edges()
         self.aliens.update()
+
+
+    def _check_fleet_edges(self):
+        """Respond appropriately if any aliens have reached an edge."""
+
+        for alien in self.aliens.sprites():
+            if alien.check_edges():
+                self._change_fleet_direction()
+                break
+
+
+    def _change_fleet_direction(self):
+        """Advance the fleet to the left and change directions from down to up."""
+
+        for alien in self.aliens.sprites():
+            alien.rect.x -= self.settings.fleet_advance_speed
+
+        self.settings.fleet_direction *= -1
 
 
     def _create_fleet(self):
