@@ -70,7 +70,7 @@ class Settings:
 
         # Alien Settings
         self.alien_speed = 3.5
-        self.fleet_advance_speed = 20
+        self.fleet_advance_speed = 10
         
         # fleet_direction of 1 represents down; -1 represents up
         self.fleet_direction = 1
@@ -245,6 +245,11 @@ class AlienInvasion:
         for bullet in self.bullets.copy():
             if bullet.rect.x >= self.settings.screen_width:
                 self.bullets.remove(bullet)
+
+        # Detect bullet collisions.
+        collisions = pygame.sprite.groupcollide(
+            self.bullets, self.aliens, True, True
+        )
 
 
     def _update_aliens(self):
