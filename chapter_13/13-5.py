@@ -68,6 +68,9 @@ class Settings:
         self.bullet_color = (60, 60, 60)
         self.bullets_allowed = 3
 
+        # Alien Settings
+        self.alien_speed = 3.5
+
 
 class Bullet(Sprite):
     """A class to manage bullets fired from the ship."""
@@ -114,6 +117,7 @@ class Alien(Sprite):
 
         super().__init__()
         self.screen = ai_game.screen
+        self.settings = ai_game.settings
 
         # Load the alien image and set its rect attribute.
         self.image = pygame.image.load('images/alien.bmp')
@@ -125,6 +129,13 @@ class Alien(Sprite):
 
         # Store the alien's exact vertical position.
         self.y = float(self.rect.y)
+
+
+    def update(self):
+        """Move the alien down."""
+
+        self.y += self.settings.alien_speed
+        self.rect.y = self.y
 
 
 class AlienInvasion:
@@ -158,6 +169,7 @@ class AlienInvasion:
             self._check_events()
             self.ship.update()
             self._update_bullets()
+            self._update_aliens()
             self._update_screen()
             self.clock.tick(60)
 
@@ -222,6 +234,12 @@ class AlienInvasion:
         for bullet in self.bullets.copy():
             if bullet.rect.x >= self.settings.screen_width:
                 self.bullets.remove(bullet)
+
+
+    def _update_aliens(self):
+        """Update the position of all aliens in the fleet."""
+
+        self.aliens.update()
 
 
     def _create_fleet(self):
