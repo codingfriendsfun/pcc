@@ -298,6 +298,8 @@ class AlienInvasion:
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
             self._ship_hit()
 
+        self._check_aliens_left()
+
 
     def _check_fleet_edges(self):
         """Respond appropriately if any aliens have reached an edge."""
@@ -305,6 +307,15 @@ class AlienInvasion:
         for alien in self.aliens.sprites():
             if alien.check_edges():
                 self._change_fleet_direction()
+                break
+
+
+    def _check_aliens_left(self):
+        """Check if aliens have hit the left side of the screen."""
+
+        for alien in self.aliens.sprites():
+            if alien.rect.left <= self.settings.screen_width:
+                self._ship_hit()
                 break
 
 
