@@ -1,5 +1,6 @@
 import pygame
 import sys
+from time import sleep
 from pygame.sprite import Sprite
 
 
@@ -181,6 +182,8 @@ class AlienInvasion:
         self.settings.screen_height = self.screen.get_rect().height
 
         pygame.display.set_caption('Alien Invasion')
+
+        self.stats = GameStats(self)
 
         self.ship = Ship(self)
 
