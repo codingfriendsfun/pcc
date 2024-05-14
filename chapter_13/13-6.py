@@ -199,6 +199,8 @@ class AlienInvasion:
 
         self._create_fleet()
 
+        self.game_active = True
+
 
     def run_game(self):
         """Start the main loop for the game."""
@@ -358,19 +360,26 @@ class AlienInvasion:
         new_alien.rect.x = x_position
         self.aliens.add(new_alien)
 
+
     def _ship_hit(self):
         """Respond to a ship being it by an alien."""
 
-        self.stats.ships_left -= 1
+        if self.stats.ships_left > 0:
 
-        self.bullets.empty()
-        self.aliens.empty()
+            self.stats.ships_left -= 1
 
-        self._create_fleet()
-        # Recenter ship on the y-axis
-        self.ship.center_ship()
+            self.bullets.empty()
+            self.aliens.empty()
 
-        sleep(0.5)
+            self._create_fleet()
+            # Recenter ship on the y-axis
+            self.ship.center_ship()
+
+            sleep(0.5)
+
+        else:
+
+            self.game_active = False
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
