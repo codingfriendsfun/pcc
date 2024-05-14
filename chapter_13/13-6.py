@@ -3,6 +3,16 @@ import sys
 from pygame.sprite import Sprite
 
 
+class GameStats:
+    """Track Statistics for Sideways Shooter."""
+
+    def __init__(self, ai_game):
+        """Initialize statistics."""
+
+        self.settings = ai_game.settings
+        self.reset_stats()
+
+
 class Ship:
     """A class to manage the ship."""
 
@@ -263,8 +273,12 @@ class AlienInvasion:
 
     def _update_aliens(self):
         """Update the position of all aliens in the fleet."""
+
         self._check_fleet_edges()
         self.aliens.update()
+
+        if pygame.sprite.spritecollideany(self.ship, self.aliens):
+            print("Ship hit!!!")
 
 
     def _check_fleet_edges(self):
