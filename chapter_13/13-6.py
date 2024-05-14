@@ -18,6 +18,7 @@ class GameStats:
         """Initialize statistics that can change during the game."""
 
         self.ships_left = self.settings.ship_limit
+        self.aliens_hit = self.settings.aliens_hit
 
 
 class Ship:
@@ -89,13 +90,14 @@ class Settings:
         # Bullet Settings
         self.bullet_speed = 2.0
         self.bullet_width = 15
-        self.bullet_height = 3
+        self.bullet_height = 300
         self.bullet_color = (60, 60, 60)
         self.bullets_allowed = 3
 
         # Alien Settings
         self.alien_speed = 3.5
-        self.fleet_advance_speed = 30
+        self.fleet_advance_speed = 15
+        self.aliens_hit = 0
         
         # fleet_direction of 1 represents down; -1 represents up
         self.fleet_direction = 1
@@ -226,7 +228,7 @@ class AlienInvasion:
 
             if event.type == pygame.QUIT:
                 sys.exit()
-
+                
             elif event.type == pygame.KEYDOWN:
                 self._check_keydown_events(event)
 
@@ -290,6 +292,11 @@ class AlienInvasion:
             self.bullets, self.aliens, True, True
         )
 
+        for bullet, alien in collisions.items():
+            
+            if alien:
+                self.stats.aliens_hit += 1 
+
         if not self.aliens:
             self.bullets.empty()
             self._create_fleet()
@@ -304,7 +311,7 @@ class AlienInvasion:
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
             self._ship_hit()
 
-        self._check_aliens_left()
+        self._check_aliens_left_screen ()
 
 
     def _check_fleet_edges(self):
@@ -316,11 +323,11 @@ class AlienInvasion:
                 break
 
 
-    def _check_aliens_left(self):
+    def _check_aliens_left_screen(self):
         """Check if aliens have hit the left side of the screen."""
 
         for alien in self.aliens.sprites():
-            if alien.rect.left <= self.settings.screen_width:
+            if alien.rect.x <= 0:
                 self._ship_hit()
                 break
 
@@ -368,22 +375,11 @@ class AlienInvasion:
     def _ship_hit(self):
         """Respond to a ship being it by an alien."""
 
-        if self.stats.ships_left > 0:
+        self.game_active = False
+        print("Game Over!")
+        print(f"You shot {self.stats.aliens_hit} aliens!")
+        sys.exit()
 
-            self.stats.ships_left -= 1
-
-            self.bullets.empty()
-            self.aliens.empty()
-
-            self._create_fleet()
-            # Recenter ship on the y-axis
-            self.ship.center_ship()
-
-            sleep(0.5)
-
-        else:
-
-            self.game_active = False
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
