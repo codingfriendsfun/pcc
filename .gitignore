@@ -75,3 +75,7 @@ chapter_16/eq_data_1_day_m1.geojson
 chapter_16/eq_explore_data.py
 chapter_16/readable_eq_data.geojson
 chapter_16/eq_data_30_day_m1.geojson
+chapter_17/python_repos.py
+chapter_17/python_repos_visual.py
+chapter_17/hn_article.py
+chapter_17/hn_submissions.py
