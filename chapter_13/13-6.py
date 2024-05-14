@@ -1,6 +1,5 @@
 import pygame
 import sys
-from time import sleep
 from pygame.sprite import Sprite
 
 
