@@ -64,6 +64,13 @@ class Ship:
         self.screen.blit(self.image, self.rect)
 
 
+    def center_ship(self):
+        """Center the ship on the y-axis."""
+
+        self.rect.midleft = self.screen_rect.midleft  
+        self.y = float(self.rect.y)      
+
+
 class Settings:
     """A class to store all the settings for Alien Invasion."""
 
@@ -191,6 +198,7 @@ class AlienInvasion:
         self.aliens = pygame.sprite.Group()
 
         self._create_fleet()
+
 
     def run_game(self):
         """Start the main loop for the game."""
@@ -329,6 +337,7 @@ class AlienInvasion:
             current_y = alien_height
             current_x += 2.5 * alien_width
 
+
     def _create_alien(self, x_position, y_position):
         """Create an alien and place it in the row."""
 
@@ -348,7 +357,7 @@ class AlienInvasion:
 
         self._create_fleet()
         # Recenter ship on the y-axis
-        self.ship.y = (self.settings.screen_height / 2)
+        self.ship.center_ship()
 
         sleep(0.5)
 
