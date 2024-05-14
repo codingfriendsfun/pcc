@@ -34,7 +34,7 @@ class Ship:
         self.image = pygame.image.load('images/ship.bmp')
         self.rect = self.image.get_rect()
 
-        # Start each new ship at the bottom center of the screen.
+        # Start each new ship at the left center of the screen.
         self.rect.midleft = self.screen_rect.midleft
 
         # Store a float for the ship's exact horizontal position.
@@ -88,7 +88,7 @@ class Settings:
 
         # Alien Settings
         self.alien_speed = 3.5
-        self.fleet_advance_speed = 10
+        self.fleet_advance_speed = 30
         
         # fleet_direction of 1 represents down; -1 represents up
         self.fleet_direction = 1
@@ -288,7 +288,7 @@ class AlienInvasion:
         self.aliens.update()
 
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
-            print("Ship hit!!!")
+            self._ship_hit()
 
 
     def _check_fleet_edges(self):
@@ -337,6 +337,20 @@ class AlienInvasion:
         new_alien.rect.y = y_position
         new_alien.rect.x = x_position
         self.aliens.add(new_alien)
+
+    def _ship_hit(self):
+        """Respond to a ship being it by an alien."""
+
+        self.stats.ships_left -= 1
+
+        self.bullets.empty()
+        self.aliens.empty()
+
+        self._create_fleet()
+        # Recenter ship on the y-axis
+        self.ship.y = (self.settings.screen_height / 2)
+
+        sleep(0.5)
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
