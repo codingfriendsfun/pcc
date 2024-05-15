@@ -8,6 +8,7 @@ from game_stats import GameStats
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
+from button import Button
 
 
 
@@ -37,7 +38,10 @@ class AlienInvasion:
         self._create_fleet()
 
         # Game flag
-        self.game_active = True
+        self.game_active = False
+
+        # Make the play button
+        self.play_button = Button(self, "Play")
 
 
     def run_game(self):
