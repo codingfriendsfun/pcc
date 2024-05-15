@@ -68,6 +68,7 @@ class Ship:
         self.moving_down = False
         self.moving_up = False
 
+
     def update(self):
         """Update the ship's position based on the movement flag."""
 
@@ -81,9 +82,11 @@ class Ship:
         # Update rect object from self.y.
         self.rect.y = self.y
 
+
     def blitme(self):
         """Draw the ship at its current location."""
         self.screen.blit(self.image, self.rect)
+
 
     def center_ship(self):
         """Center the ship on the y-axis."""
@@ -107,7 +110,7 @@ class Settings:
         self.ship_speed = 3.5
 
         # Bullet Settings
-        self.bullet_speed = 2.0
+        self.bullet_speed = 100
         self.bullet_width = 15
         self.bullet_height = 3
         self.bullet_color = (60, 60, 60)
@@ -141,6 +144,7 @@ class Bullet(Sprite):
         # Store the bullet's position as a float.
         self.x = float(self.rect.x)
 
+
     def update(self):
         """Move the bullet to the right."""
 
@@ -149,6 +153,7 @@ class Bullet(Sprite):
 
         # Update the rect position.
         self.rect.x = self.x
+
 
     def draw_bullet(self):
         """Draw the bullet to the screen."""
@@ -175,18 +180,21 @@ class Target:
         # Store the target's position as a float.
         self.y = float(self.rect.y)
 
+
     def update(self):
         """Move the target up and down."""
 
         self.y += self.settings.target_speed * self.settings.target_direction
         self.rect.y = self.y
     
+
     def check_edges(self):
         """Return True if target is at edge of screen."""
 
         screen_rect = self.screen.get_rect()
 
         return (self.rect.bottom >= screen_rect.bottom) or (self.rect.top <= 0)
+
 
     def draw_target(self):
         """Draw the target to the screen."""
@@ -218,6 +226,7 @@ class TargetPractice:
 
         self.play_button = Button(self, "Play")
 
+
     def run_game(self):
         """Start the main loop for the game."""
 
@@ -233,6 +242,7 @@ class TargetPractice:
 
             self._update_screen()
             self.clock.tick(60)
+
 
     def _check_events(self):
         """Respond to keypresses and mouse events."""
@@ -252,6 +262,7 @@ class TargetPractice:
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
 
+
     def _check_keydown_events(self, event):
         """Respond to keypresses."""
 
@@ -267,6 +278,7 @@ class TargetPractice:
         elif event.key == pygame.K_q:
             sys.exit()
 
+
     def _check_keyup_events(self, event):
         """Respond to key releases."""
 
@@ -275,6 +287,7 @@ class TargetPractice:
 
         elif event.key == pygame.K_UP:
             self.ship.moving_up = False
+
 
     def _check_play_button(self, mouse_pos):
         """Check the status of the play button."""
@@ -285,11 +298,13 @@ class TargetPractice:
             self.bullets.empty()
             self.ship.center_ship()
 
+
     def _update_target(self):
         """Update targets behavior."""
 
         self.target.update()
         self._check_target_edges()
+
 
     def _check_target_edges(self):
         """Change target directions if a screen edge is hit."""
@@ -297,12 +312,14 @@ class TargetPractice:
         if self.target.check_edges():
             self.settings.target_direction *= -1
 
+
     def _fire_bullet(self):
         """Create a new bullet and add it to the bullets group."""
 
         if len(self.bullets) < self.settings.bullets_allowed:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
+
 
     def _update_bullets(self):
         """Update position of bullets and get rid of old bullets."""
@@ -319,8 +336,20 @@ class TargetPractice:
                 if self.settings.max_attempts > 0:
                     self.settings.max_attempts -= 1
 
+                    if self.settings.max_attempts == 0:
+                        self._reset_game()
+
                 else:
-                    self.game_active = False
+                    self._reset_game()
+
+
+    def _reset_game(self):
+        """Reset the game."""
+
+        self.settings.max_attempts = 3
+        self.game_active = False
+        self.ship.center_ship()
+
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
