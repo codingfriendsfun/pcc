@@ -114,6 +114,13 @@ class Settings:
         self.bullets_allowed = 10
         self.max_attempts = 3
 
+        # Target Settings
+        self.target_speed = 10
+        self.target_width = 15
+        self.target_height = 100
+        self.target_color = (60, 60, 60)
+        self.target_direction = 1
+
 
 class Bullet(Sprite):
     """A class to manage bullets fired from the ship."""
@@ -147,6 +154,33 @@ class Bullet(Sprite):
         """Draw the bullet to the screen."""
 
         pygame.draw.rect(self.screen, self.color, self.rect)
+
+
+class Target:
+    """A class to manage the target."""
+
+    def __init__(self, target_practice):        
+
+        self.screen = target_practice.screen
+        self.settings = target_practice.settings
+        self.color = self.settings.target_color
+
+        # Create a target rect at (0, 0) and then set correct position.
+        self.rect = pygame.Rect(0, 0, self.settings.target_width,
+                                self.settings.target_height)
+        self.rect.midright = self.screen
+
+        self.rect.x = self.rect.width
+        self.rect.y = self.rect.height
+
+        # Store the target's position as a float.
+        self.y = float(self.rect.y)
+
+    def update(self):
+        """Move the target up and down."""
+
+        self.y += self.settings.target_speed * self.settings.target_direction
+        self.rect.y = self.y
 
 
 class TargetPractice:
@@ -253,7 +287,7 @@ class TargetPractice:
 
         # Get rid of bullets that have disappeared.
         for bullet in self.bullets.copy():
-            
+
             if bullet.rect.x >= self.settings.screen_width:
                 self.bullets.remove(bullet)
 
