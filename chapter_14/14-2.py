@@ -180,6 +180,13 @@ class Target:
 
         self.y += self.settings.target_speed * self.settings.target_direction
         self.rect.y = self.y
+    
+    def check_edges(self):
+        """Return True if target is at edge of screen."""
+
+        screen_rect = self.screen.get_rect()
+
+        return (self.rect.bottom >= screen_rect.bottom) or (self.rect.top <= 0)
 
     def draw_target(self):
         """Draw the target to the screen."""
@@ -221,7 +228,7 @@ class TargetPractice:
             if self.game_active:
 
                 self.ship.update()
-                self.target.update()
+                self._update_target()
                 self._update_bullets()
 
             self._update_screen()
@@ -277,6 +284,18 @@ class TargetPractice:
             self.game_active = True
             self.bullets.empty()
             self.ship.center_ship()
+
+    def _update_target(self):
+        """Update targets behavior."""
+
+        self.target.update()
+        self._check_target_edges()
+
+    def _check_target_edges(self):
+        """Change target directions if a screen edge is hit."""
+
+        if self.target.check_edges():
+            self.settings.target_direction *= -1
 
     def _fire_bullet(self):
         """Create a new bullet and add it to the bullets group."""
