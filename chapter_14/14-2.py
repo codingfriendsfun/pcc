@@ -168,10 +168,9 @@ class Target:
         # Create a target rect at (0, 0) and then set correct position.
         self.rect = pygame.Rect(0, 0, self.settings.target_width,
                                 self.settings.target_height)
-        self.rect.midright = self.screen
 
-        self.rect.x = self.rect.width
-        self.rect.y = self.rect.height
+        self.rect.x = self.settings.screen_width - (self.rect.width * 2)
+        self.rect.y = self.settings.screen_height - (self.rect.height * 2)
 
         # Store the target's position as a float.
         self.y = float(self.rect.y)
@@ -181,6 +180,11 @@ class Target:
 
         self.y += self.settings.target_speed * self.settings.target_direction
         self.rect.y = self.y
+
+    def draw_target(self):
+        """Draw the target to the screen."""
+
+        pygame.draw.rect(self.screen, self.color, self.rect)
 
 
 class TargetPractice:
@@ -200,6 +204,7 @@ class TargetPractice:
         pygame.display.set_caption('Target Practice')
 
         self.ship = Ship(self)
+        self.target = Target(self)
         self.bullets = pygame.sprite.Group()
 
         self.game_active = False
@@ -216,6 +221,7 @@ class TargetPractice:
             if self.game_active:
 
                 self.ship.update()
+                self.target.update()
                 self._update_bullets()
 
             self._update_screen()
@@ -306,6 +312,7 @@ class TargetPractice:
             bullet.draw_bullet()
 
         self.ship.blitme()
+        self.target.draw_target()
 
         if not self.game_active:
              self.play_button.draw_button()
