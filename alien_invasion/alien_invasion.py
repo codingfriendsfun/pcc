@@ -235,6 +235,9 @@ class AlienInvasion:
        
         self.screen.fill(self.settings.bg_color)
 
+        if not self.game_active:
+            self.play_button.draw_button()
+            
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
             
