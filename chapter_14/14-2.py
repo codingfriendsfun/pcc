@@ -110,7 +110,7 @@ class Settings:
         self.ship_speed = 3.5
 
         # Bullet Settings
-        self.bullet_speed = 100
+        self.bullet_speed = 10
         self.bullet_width = 15
         self.bullet_height = 3
         self.bullet_color = (60, 60, 60)
@@ -161,7 +161,7 @@ class Bullet(Sprite):
         pygame.draw.rect(self.screen, self.color, self.rect)
 
 
-class Target:
+class Target(Sprite):
     """A class to manage the target."""
 
     def __init__(self, target_practice):        
@@ -179,6 +179,7 @@ class Target:
 
         # Store the target's position as a float.
         self.y = float(self.rect.y)
+        self.x = float(self.rect.x)
 
 
     def update(self):
@@ -186,6 +187,7 @@ class Target:
 
         self.y += self.settings.target_speed * self.settings.target_direction
         self.rect.y = self.y
+        self.rect.x = self.x
     
 
     def check_edges(self):
@@ -201,6 +203,13 @@ class Target:
 
         pygame.draw.rect(self.screen, self.color, self.rect)
 
+
+    def reset_target(self):
+        """Place target back at the starting position."""
+        
+        self.rect.x = self.settings.screen_width - (self.rect.width * 2)
+        self.rect.y = self.settings.screen_height - (self.rect.height * 2)
+      
 
 class TargetPractice:
     """Overall class to manage game assets and behavior."""
@@ -327,8 +336,13 @@ class TargetPractice:
         # Update bullet position.
         self.bullets.update()
 
+        
+
         # Get rid of bullets that have disappeared.
         for bullet in self.bullets.copy():
+
+            if pygame.sprite.spritecollideany(self.target, self.bullets):
+                self.bullets.remove(bullet)
 
             if bullet.rect.x >= self.settings.screen_width:
                 self.bullets.remove(bullet)
@@ -342,13 +356,14 @@ class TargetPractice:
                 else:
                     self._reset_game()
 
-
+            
     def _reset_game(self):
         """Reset the game."""
 
         self.settings.max_attempts = 3
         self.game_active = False
         self.ship.center_ship()
+        self.target.reset_target()
 
 
     def _update_screen(self):
