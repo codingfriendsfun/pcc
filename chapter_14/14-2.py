@@ -183,7 +183,7 @@ class TargetPractice:
 
                 self.ship.update()
                 self._update_bullets()
-                
+
             self._update_screen()
             self.clock.tick(60)
 
@@ -230,13 +230,13 @@ class TargetPractice:
             self.ship.moving_up = False
 
     def _check_play_button(self, mouse_pos):
-         """Check the status of the play button."""
+        """Check the status of the play button."""
 
-         if self.play_button.rect.collidepoint(mouse_pos):
-             
-             self.game_active = True
-             self.bullets.empty()
-             self.ship.center_ship()
+        if self.play_button.rect.collidepoint(mouse_pos):
+
+            self.game_active = True
+            self.bullets.empty()
+            self.ship.center_ship()
 
     def _fire_bullet(self):
         """Create a new bullet and add it to the bullets group."""
@@ -253,9 +253,15 @@ class TargetPractice:
 
         # Get rid of bullets that have disappeared.
         for bullet in self.bullets.copy():
+            
             if bullet.rect.x >= self.settings.screen_width:
                 self.bullets.remove(bullet)
-                self.settings.max_attempts -= 1
+
+                if self.settings.max_attempts > 0:
+                    self.settings.max_attempts -= 1
+
+                else:
+                    self.game_active = False
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
