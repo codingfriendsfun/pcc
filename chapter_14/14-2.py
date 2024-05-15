@@ -85,6 +85,12 @@ class Ship:
         """Draw the ship at its current location."""
         self.screen.blit(self.image, self.rect)
 
+    def center_ship(self):
+        """Center the ship on the y-axis."""
+
+        self.rect.midleft = self.screen_rect.midleft  
+        self.y = float(self.rect.y)   
+
 
 class Settings:
     """A class to store all the settings for Target Practice."""
@@ -162,14 +168,22 @@ class TargetPractice:
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
 
+        self.game_active = False
+
+        self.play_button = Button(self, "Play")
+
     def run_game(self):
         """Start the main loop for the game."""
 
         while True:
 
             self._check_events()
-            self.ship.update()
-            self._update_bullets()
+
+            if self.game_active:
+
+                self.ship.update()
+                self._update_bullets()
+                
             self._update_screen()
             self.clock.tick(60)
 
@@ -180,6 +194,10 @@ class TargetPractice:
 
             if event.type == pygame.QUIT:
                 sys.exit()
+
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                self._check_play_button(mouse_pos)
 
             elif event.type == pygame.KEYDOWN:
                 self._check_keydown_events(event)
@@ -211,6 +229,15 @@ class TargetPractice:
         elif event.key == pygame.K_UP:
             self.ship.moving_up = False
 
+    def _check_play_button(self, mouse_pos):
+         """Check the status of the play button."""
+
+         if self.play_button.rect.collidepoint(mouse_pos):
+             
+             self.game_active = True
+             self.bullets.empty()
+             self.ship.center_ship()
+
     def _fire_bullet(self):
         """Create a new bullet and add it to the bullets group."""
 
@@ -240,6 +267,9 @@ class TargetPractice:
 
         self.ship.blitme()
 
+        if not self.game_active:
+             self.play_button.draw_button()
+
         pygame.display.flip()
 
 
@@ -247,4 +277,3 @@ if __name__ == '__main__':
     # Make a game instance, and run the game.
     ai = TargetPractice()
     ai.run_game()
-    
