@@ -117,9 +117,10 @@ class Settings:
         self.target_width = 15
         self.target_height = 200
         self.target_color = (60, 60, 60)
-        self.target_direction = 1
 
-        self.speedup_scale = 1.1
+        self.speedup_scale = 1.5
+
+        self.next_level = 5
 
         self.initialize_dynamic_settings()
 
@@ -262,6 +263,7 @@ class TargetPractice:
 
             if self.game_active:
 
+                self._check_level_status()
                 self.ship.update()
                 self._update_target()
                 self._update_bullets()
@@ -305,6 +307,14 @@ class TargetPractice:
             sys.exit()
 
 
+    def _check_level_status(self):
+        """Increase difficulty when player levels up."""
+
+        if self.settings.next_level == 0:
+            self.settings.increase_speed()
+            self.settings.next_level = 5
+
+
     def _check_keyup_events(self, event):
         """Respond to key releases."""
 
@@ -323,6 +333,7 @@ class TargetPractice:
             self.game_active = True
             self.bullets.empty()
             self.ship.center_ship()
+            self.settings.initialize_dynamic_settings()
 
 
     def _update_target(self):
@@ -353,13 +364,12 @@ class TargetPractice:
         # Update bullet position.
         self.bullets.update()
 
-        
-
-        # Get rid of bullets that have disappeared.
+        # Get rid of bullets that have disappeared or hit target.
         for bullet in self.bullets.copy():
 
             if pygame.sprite.spritecollideany(self.target, self.bullets):
                 self.bullets.remove(bullet)
+                self.settings.next_level -= 1
 
             if bullet.rect.x >= self.settings.screen_width:
                 self.bullets.remove(bullet)
