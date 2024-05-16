@@ -116,7 +116,11 @@ class AlienInvasion:
         """Begin a new game."""
 
         self.stats.reset_stats()
+
+        self.settings.initialize_dynamic_settings()
+
         self.sb.prep_score()
+        self.sb.prep_high_score()
         self.sb.prep_level()
         self.sb.prep_ships()
         
@@ -142,7 +146,7 @@ class AlienInvasion:
         if button_clicked and not self.game_active:
 
             self._start_game()
-            self.settings.initialize_dynamic_settings()
+            
 
 
     def _ship_hit(self):
@@ -210,7 +214,9 @@ class AlienInvasion:
         if collisions:
 
             for alien in collisions.values():
-                self.stats.score += self.settings.alien_points
+                
+                if alien:
+                    self.stats.score += self.settings.alien_points
 
             self.sb.prep_score()
             self.sb.prep_high_score()
