@@ -11,7 +11,7 @@ class Scoreboard:
 
         self.ai_game = ai_game
         self.screen = ai_game.screen
-        self.screen_rect = self.scree.get_rect()
+        self.screen_rect = self.screen.get_rect()
         self.settings = ai_game.settings
         self.stats = ai_game.stats
 
@@ -23,7 +23,7 @@ class Scoreboard:
         self.prep_score()
         self.prep_high_score()
         self.prep_level()
-        self.prep_ship()
+        self.prep_ships()
 
 
     def prep_score(self):
@@ -52,7 +52,7 @@ class Scoreboard:
         
         # Center the high score at the top of the screen.
         self.high_score_rect = self.high_score_image.get_rect()
-        self.high_score_rect.centerx = self.score_rect.centerx
+        self.high_score_rect.centerx = self.screen_rect.centerx
         self.high_score_rect.top = self.score_rect.top
 
 
