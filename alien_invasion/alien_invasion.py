@@ -214,12 +214,12 @@ class AlienInvasion:
         if collisions:
 
             for alien in collisions.values():
-                
+
                 if alien:
                     self.stats.score += self.settings.alien_points
 
             self.sb.prep_score()
-            self.sb.prep_high_score()
+            self.sb.check_high_score()
 
         if not self.aliens:
             # Destroy existing bullets and create new fleet.
@@ -254,7 +254,7 @@ class AlienInvasion:
         alien = Alien(self)
         alien_width, alien_height = alien.rect.size
 
-        current_x, current_y = alien_width, alien_height
+        current_x, current_y = alien_width, alien_height * 1.5
 
         while current_y < (self.settings.screen_height - 3 * alien_height):
            
