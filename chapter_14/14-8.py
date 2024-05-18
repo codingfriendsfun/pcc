@@ -1,178 +1,7 @@
 import pygame
 import sys
-from pygame.sprite import Sprite
-
-
-class GameStats:
-    """Track Statistics for Sideways Shooter."""
-
-    def __init__(self, ai_game):
-        """Initialize statistics."""
-
-        self.settings = ai_game.settings
-        self.reset_stats()
-
-
-    def reset_stats(self):
-        """Initialize statistics that can change during the game."""
-
-        self.ships_left = self.settings.ship_limit
-        self.aliens_hit = self.settings.aliens_hit
-
-
-class Ship:
-    """A class to manage the ship."""
-
-    def __init__(self, ai_game):
-        """Initialize the ship and set its starting position."""
-
-        self.screen = ai_game.screen
-        self.settings = ai_game.settings
-        self.screen_rect = ai_game.screen.get_rect()
-
-        # Load the ship image and get its rect.
-        self.image = pygame.image.load('images/ship.bmp')
-        self.rect = self.image.get_rect()
-
-        # Start each new ship at the left center of the screen.
-        self.rect.midleft = self.screen_rect.midleft
-
-        # Store a float for the ship's exact horizontal position.
-        self.y = float(self.rect.y)
-
-        # Movement flag; start with a ship that's not moving.
-        self.moving_down = False
-        self.moving_up = False
-
-
-    def update(self):
-        """Update the ship's position based on the movement flag."""
-
-        # Update the ship's y value, not the rect.
-        if self.moving_down and self.rect.bottom < self.screen_rect.bottom:
-            self.y += self.settings.ship_speed
-        if self.moving_up and self.rect.top > 0:
-            self.y -= self.settings.ship_speed
-
-        # Update rect object from self.y.
-        self.rect.y = self.y
-
-
-    def blitme(self):
-        """Draw the ship at its current location."""
-
-        self.screen.blit(self.image, self.rect)
-
-
-    def center_ship(self):
-        """Center the ship on the y-axis."""
-
-        self.rect.midleft = self.screen_rect.midleft  
-        self.y = float(self.rect.y)      
-
-
-class Settings:
-    """A class to store all the settings for Alien Invasion."""
-
-    def __init__(self):
-        """Initialize the game's settings."""
-
-        # Screen settings
-        self.screen_width = 1200
-        self.screen_height = 700
-        self.bg_color = (230, 230, 230)
-
-        # Ship Settings
-        self.ship_speed = 3.5
-        self.ship_limit = 1
-
-        # Bullet Settings
-        self.bullet_speed = 2.0
-        self.bullet_width = 15
-        self.bullet_height = 300
-        self.bullet_color = (60, 60, 60)
-        self.bullets_allowed = 3
-
-        # Alien Settings
-        self.alien_speed = 3.5
-        self.fleet_advance_speed = 15
-        self.aliens_hit = 0
-        
-        # fleet_direction of 1 represents down; -1 represents up
-        self.fleet_direction = 1
-
-
-class Bullet(Sprite):
-    """A class to manage bullets fired from the ship."""
-    
-    def __init__(self, ai_game):
-        """Create a bullet object at the ship's current position."""
-
-        super().__init__()
-
-        self.screen = ai_game.screen
-        self.settings = ai_game.settings
-        self.color = self.settings.bullet_color
-
-        # Create a bullet rect at (0, 0) and then set correct position.
-        self.rect = pygame.Rect(0, 0, self.settings.bullet_width,
-                                self.settings.bullet_height)
-        self.rect.midright = ai_game.ship.rect.midright
-
-        # Store the bullet's position as a float.
-        self.x = float(self.rect.x)
-
-
-    def update(self):
-        """Move the bullet up the screen."""
-
-        # Update the exact position of the bullet.
-        self.x += self.settings.bullet_speed
-
-        # Update the rect position.
-        self.rect.x = self.x
-
-
-    def draw_bullet(self):
-        """Draw the bullet to the screen."""
-
-        pygame.draw.rect(self.screen, self.color, self.rect)
-
-
-class Alien(Sprite):
-    """A class to represent a single alien in the fleet."""
-
-    def __init__(self, ai_game):
-        """Initialize the alient and its starting position."""
-
-        super().__init__()
-        self.screen = ai_game.screen
-        self.settings = ai_game.settings
-
-        # Load the alien image and set its rect attribute.
-        self.image = pygame.image.load('images/alien.bmp')
-        self.rect = self.image.get_rect()
-
-        # Start each new alien near the top left of the screen.
-        self.rect.x = self.rect.width
-        self.rect.y = self.rect.height
-
-        # Store the alien's exact vertical position.
-        self.y = float(self.rect.y)
-
-
-    def check_edges(self):
-        """Return True if alien hits the edge of a screen."""
-
-        screen_rect = self.screen.get_rect()
-        return (self.rect.bottom >= screen_rect.bottom) or (self.rect.top <= 0)
-
-
-    def update(self):
-        """Move the alien down."""
-
-        self.y += self.settings.alien_speed * self.settings.fleet_direction
-        self.rect.y = self.y
+from sideways_shooter_resources import Scoreboard, Settings, Ship
+from sideways_shooter_resources import Bullet, Alien, GameStats, Button
 
 
 class AlienInvasion:
@@ -291,11 +120,6 @@ class AlienInvasion:
             self.bullets, self.aliens, True, True
         )
 
-        for bullet, alien in collisions.items():
-            
-            if alien:
-                self.stats.aliens_hit += 1 
-
         if not self.aliens:
             self.bullets.empty()
             self._create_fleet()
@@ -376,7 +200,6 @@ class AlienInvasion:
 
         self.game_active = False
         print("Game Over!")
-        print(f"You shot {self.stats.aliens_hit} aliens!")
         sys.exit()
 
 
