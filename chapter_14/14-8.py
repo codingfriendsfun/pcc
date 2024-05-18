@@ -21,6 +21,7 @@ class AlienInvasion:
         pygame.display.set_caption('Alien Invasion')
 
         self.stats = GameStats(self)
+        self.sb = Scoreboard(self)
 
         self.ship = Ship(self)
 
@@ -90,6 +91,33 @@ class AlienInvasion:
             self.ship.moving_up = False
 
 
+        def _start_game(self):
+            """Begin a new game."""
+
+            self.stats.reset_stats()
+
+            self.settings.initialize_dynamic_settings()
+
+            self.sb.prep_score()
+            self.sb.prep_high_score()
+            self.sb.prep_level()
+            
+            self.game_active = True
+
+            # Get rid of any remaining bullets and aliens.
+            self.bullets.empty()
+            self.aliens.empty()
+
+            # Create a new fleet and center the ship.
+            self._create_fleet()
+            self.ship.center_ship()
+
+            # Hide the mouse cursor.
+            pygame.mouse.set_visible(False)
+
+
+
+
     def _fire_bullet(self):
         """Create a new bullet and add it to the bullets group."""
 
@@ -120,7 +148,20 @@ class AlienInvasion:
             self.bullets, self.aliens, True, True
         )
 
+        if collisions:
+
+            for alien in collisions.values():
+                self.stats.score += self.settings.alien_points
+
+            self.sb.prep_score()
+            self.sb.check_high_score()
+
         if not self.aliens:
+
+            # Increase level
+            self.stats.level += 1
+            self.sb.prep_level()
+
             self.bullets.empty()
             self._create_fleet()
 
@@ -209,6 +250,8 @@ class AlienInvasion:
         self.screen.fill(self.settings.bg_color)
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
+
+        self.sb.show_score()
 
         self.ship.blitme()
         self.aliens.draw(self.screen)
