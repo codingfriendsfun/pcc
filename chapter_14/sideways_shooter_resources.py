@@ -244,9 +244,7 @@ class Button:
 
         # Build the button's rect object and center it.
         self.rect = pygame.Rect(0, 0, self.width, self.height)
-        
-        self._set_button(msg)
-        self.rect.centery = self.screen_rect.centery
+        self.rect.center = self.screen_rect.center
 
         # The button message needs to be prepper only once.
         self._prep_msg(msg)
@@ -259,23 +257,6 @@ class Button:
                             msg, True, self.text_color, self.button_color)
         self.msg_image_rect = self.msg_image.get_rect()
         self.msg_image_rect.center = self.rect.center
-
-
-    def _set_button(self, msg):
-
-        if msg.lower() == 'easy':
-
-            self.rect.centerx = self.screen_rect.centerx - 1.5 * self.rect.width
-
-        elif msg.lower() == 'medium':
-            
-            self.rect.centerx = self.screen_rect.centerx
-
-        elif msg.lower() == 'hard':
-
-            self.rect.centerx = self.screen_rect.centerx + 1.5 * self.rect.width
-
-        return self.rect.centerx
 
 
     def draw_button(self):
@@ -302,9 +283,9 @@ class Scoreboard:
         self.font = pygame.font.SysFont(None, 48)
 
         # Prepare the initial score image.
+        self.prep_level()
         self.prep_score()
         self.prep_high_score()
-        self.prep_level()
 
 
     def prep_score(self):
@@ -318,8 +299,8 @@ class Scoreboard:
         
         # Display the score at the top right of the screen.
         self.score_rect = self.score_image.get_rect()
-        self.score_rect.right = self.screen_rect.right - 20
-        self.score_rect.top = 20
+        self.score_rect.right = self.screen_rect.right - 10
+        self.score_rect.top = self.level_rect.top - self.score_rect.height
 
 
     def prep_high_score(self):
@@ -333,8 +314,8 @@ class Scoreboard:
         
         # Center the high score at the top of the screen.
         self.high_score_rect = self.high_score_image.get_rect()
-        self.high_score_rect.centerx = self.screen_rect.centerx
-        self.high_score_rect.top = self.score_rect.top
+        self.high_score_rect.right = self.screen_rect.right - 20
+        self.high_score_rect.top = self.screen_rect.top + 10
 
 
     def prep_level(self):
@@ -347,8 +328,8 @@ class Scoreboard:
         
         # Position the level below the score.
         self.level_rect = self.level_image.get_rect()
-        self.level_rect.right = self.score_rect.right
-        self.level_rect.top = self.score_rect.bottom + 10
+        self.level_rect.right = self.screen_rect.right - 10
+        self.level_rect.bottom = self.screen_rect.bottom - 10
 
 
     def show_score(self):
