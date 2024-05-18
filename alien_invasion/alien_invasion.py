@@ -43,7 +43,9 @@ class AlienInvasion:
         self.game_active = False
 
         # Make the play button
-        self.play_button = Button(self, "Play")
+        self.easy_button = Button(self, "Easy")
+        self.medium_button = Button(self, "Medium")
+        self.hard_button = Button(self, "Hard")
 
 
     def run_game(self):
@@ -74,7 +76,7 @@ class AlienInvasion:
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
 
-                self._check_play_button(mouse_pos)
+                self._check_difficulty_button(mouse_pos)
 
             elif event.type == pygame.KEYDOWN:
                 self._check_keydown_events(event)
@@ -138,15 +140,28 @@ class AlienInvasion:
         pygame.mouse.set_visible(False)
 
 
-    def _check_play_button(self, mouse_pos):
+    def _check_difficulty_button(self, mouse_pos):
         """Start a new game when they player clicks Play."""
 
-        button_clicked = self.play_button.rect.collidepoint(mouse_pos)
+        easy_button = self.easy_button.rect.collidepoint(mouse_pos)
+        medium_button = self.medium_button.rect.collidepoint(mouse_pos)
+        hard_button = self.hard_button.rect.collidepoint(mouse_pos)
 
-        if button_clicked and not self.game_active:
+        if easy_button and not self.game_active:
 
             self._start_game()
+
+        elif medium_button and not self.game_active:
+
+            self.settings.score_scale = 2
+            self.settings.speedup_scale = 1.2
+            self._start_game()
             
+        elif hard_button and not self.game_active:
+
+            self.settings.score_scale = 2.5
+            self.settings.speedup_scale = 1.3
+            self._start_game()
 
 
     def _ship_hit(self):
@@ -310,7 +325,10 @@ class AlienInvasion:
         self.sb.show_score()
 
         if not self.game_active:
-            self.play_button.draw_button()
+            self.easy_button.draw_button()
+            self.medium_button.draw_button()
+            self.hard_button.draw_button()
+
 
         pygame.display.flip()
 
