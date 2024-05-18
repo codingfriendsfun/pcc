@@ -30,7 +30,9 @@ class AlienInvasion:
 
         self._create_fleet()
 
-        self.game_active = True
+        self.game_active = False
+
+        self.play_button = Button(self, 'Play')
 
 
     def run_game(self):
@@ -240,8 +242,6 @@ class AlienInvasion:
         """Respond to a ship being it by an alien."""
 
         self.game_active = False
-        print("Game Over!")
-        sys.exit()
 
 
     def _update_screen(self):
@@ -252,6 +252,9 @@ class AlienInvasion:
             bullet.draw_bullet()
 
         self.sb.show_score()
+
+        if not self.game_active:
+            self.play_button.draw_button()
 
         self.ship.blitme()
         self.aliens.draw(self.screen)
