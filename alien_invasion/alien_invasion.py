@@ -71,6 +71,7 @@ class AlienInvasion:
         for event in pygame.event.get():
 
             if event.type == pygame.QUIT:
+                self.stats.save_high_score()
                 sys.exit()
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -101,6 +102,7 @@ class AlienInvasion:
             self._fire_bullet()
 
         elif event.key == pygame.K_q:
+            self.stats.save_high_score()
             sys.exit()
 
 
