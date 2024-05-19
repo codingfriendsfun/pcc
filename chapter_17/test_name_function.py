@@ -18,7 +18,7 @@ def test_get_repo_info(website):
     """Test expected number of repositories returned"""
     response_dict = get_repo_info(website)
     
-    num_dicts =  response_dict['total_count']
+    num_dicts =  len(response_dict)
     assert num_dicts >= 200
     
 
