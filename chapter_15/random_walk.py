@@ -21,12 +21,14 @@ class RandomWalk:
         while len(self.x_values) < self.num_points:
 
             # Decide which direction to go, and how far to go.
-            x_direction = choice([1])
-            x_distance = choice([0, -1, -2, -3, -4])
+            distance = range(0,30)
+
+            x_direction = choice([1,-1])
+            x_distance = choice(distance)
             x_step = x_direction * x_distance
 
-            y_direction = choice([-1])
-            y_distance = choice([0, 1, 2, 3, 4])
+            y_direction = choice([1,-1])
+            y_distance = choice(distance)
             y_step = y_direction * y_distance
 
             # Reject moves that go nowhere.
