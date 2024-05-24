@@ -13,7 +13,7 @@ class MolecularMotion:
         self.y_values = [0]
 
     
-    def fill_walk(self):
+    def move_pollen(self):
         """Calculate all the points of the pollen."""
 
         while len(self.x_values) < self.num_points:
