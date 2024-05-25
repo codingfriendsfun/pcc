@@ -4,7 +4,7 @@ from die import Die
 
 # Create a D6
 die_1 = Die()
-die_2 = Die()
+die_2 = Die(10)
 
 # Results list comprehnsion
 results = [die_1.roll() + die_2.roll() for roll_num in range(50_000)]
