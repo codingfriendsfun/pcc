@@ -28,7 +28,6 @@ def get_repo_info(response_dict):
     """Count number of repos"""
     repo_dicts = response_dict['items']
     print(f"Repositories returned: {len(repo_dicts)}")
-    
     return repo_dicts
 
 
