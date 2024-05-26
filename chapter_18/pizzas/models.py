@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Pizza(models.Model):
     """A pizza"""
     name = models.CharField(max_length=50)
