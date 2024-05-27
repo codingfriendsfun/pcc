@@ -30,5 +30,3 @@ for row in reader:
         sf_dates.append(date)
         sf_highs.append(high)
         sf_lows.append(low)
-
-print(sf_lows)
