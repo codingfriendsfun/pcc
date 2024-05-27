@@ -4,7 +4,7 @@ import csv
 from datetime import datetime
 
 
-path = Path('weather_data/san_fran_2021_simple.csv')
+path = Path('weather_data/san_fran_weather_2021_simple.csv')
 
 lines = path.read_text().splitlines()
 
@@ -20,13 +20,15 @@ for row in reader:
     date = datetime.strptime(row[2], '%Y-%m-%d')
 
     try:
-        high = int(row[6])
-        low = int(row[7])
+        high = int(row[3])
+        low = int(row[4])
 
     except:
-        print(f"Missing data for {date}")
+        continue
 
     else:
         sf_dates.append(date)
         sf_highs.append(high)
         sf_lows.append(low)
+
+print(sf_lows)
