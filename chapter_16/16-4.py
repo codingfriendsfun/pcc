@@ -12,31 +12,45 @@ lines = path.read_text().splitlines()
 reader = csv.reader(lines)
 header_row = next(reader)
 
+# Get indexes
+
+for i in range(0, len(header_row)):
+    if header_row[i] == 'TMAX':
+        tmax = i
+    elif header_row[i] == 'TMIN':
+        tmin = i
+    elif header_row[i] == 'NAME':
+        name_index = i
+
 # Extract PRCP values.
 
-dates, prcps = [], []
+dates, highs, lows = [], [], []
 
 for row in reader:
-
+    
+    name = row[name_index]
     date = datetime.strptime(row[2], '%Y-%m-%d')
 
     try:
-        prcp = float(row[5])
+        high = int(row[tmax])
+        low = int(row[tmin])
 
     except:
-        print(f"Missing data for {date}")
+        pass
 
     else:
         dates.append(date)
-        prcps.append(prcp)
+        highs.append(high)
+        lows.append(low)
 
 
 plt.style.use('Solarize_Light2')
 fig, ax = plt.subplots()
-ax.plot(dates, prcps)
+ax.plot(dates, highs)
+ax.plot(dates, lows)
 
 # Format plot.
-title = 'Daily Rainfall in Sitka'
+title = f'{name} Temperature Data'
 ax.set_title(title, fontsize=20)
 ax.set_xlabel('', fontsize=16)
 
