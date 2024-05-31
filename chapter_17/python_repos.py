@@ -6,13 +6,8 @@ class RepoAPI:
     def __init__(self, url):
         """Initialize attributes."""
         self.url = url
-
-
-    def execute_api_call(self):
-        """Make API call and process the results."""
-
-        self._api_call()
-        self._process_results()
+        
+        self.repo_dicts = self._collect_dicts()
 
 
     def _api_call(self):
@@ -36,17 +31,15 @@ class RepoAPI:
 
     def _collect_dicts(self):
         """Store all dictionaries."""
-
+        
+        self._api_call()
         self._response_dict()
 
-        self.repo_dicts = self.r['items']
-        return self.repo_dicts
+        return self.r['items']
 
 
-    def _process_results(self):
+    def process_results(self):
         """Process results."""
-
-        self._collect_dicts()
 
         # API results
         print(f"Total Repositories: {self.r['total_count']}")
