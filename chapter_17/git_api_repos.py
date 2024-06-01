@@ -15,9 +15,10 @@ class RepoAPI:
 
         self.headers = {'Accept': 'application/vnd.github.v3+json'}
         self.r = requests.get(self.url, headers=self.headers)
-
+        
         # Status Code
-        print(f"Status code: {self.r.status_code}")
+        self.status_code = self.r.status_code
+        print(f"Status code: {self.status_code}")
         
         return self.r
 
