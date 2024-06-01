@@ -42,6 +42,3 @@ def test_collected_repository_numbers(new_api_call):
     num_of_dicts = len(new_api_call.repo_dicts)
 
     assert num_of_dicts >= 30
-
-
-
