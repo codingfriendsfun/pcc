@@ -12,7 +12,7 @@ class Pizza(models.Model):
     def __str__(self):
         """Return a string."""
 
-        return self.text
+        return self.name
 
 
 class Topping(models.Model):
@@ -29,10 +29,10 @@ class Topping(models.Model):
     def __str__(self):
         """Topping attributes."""
 
-        if len(str(self.text)) >= 50:
+        if len(str(self.name)) >= 50:
 
-            return f"{self.text[:50]}..."
+            return f"{self.name[:50]}..."
 
         else:
-            return self.text
+            return self.name
 
