@@ -43,7 +43,6 @@ class AlienInvasion:
     def _create_alien(self, x_position, y_position):
         """create an alien and place it in a row"""
         new_alien = Alien(self)
-        new_alien.x = x_position
         new_alien.rect.x = x_position
         new_alien.rect.y = y_position
         self.aliens.add(new_alien)
@@ -75,6 +74,11 @@ class AlienInvasion:
         for bullet in self.bullets.copy():
                 if bullet.rect.bottom <= 0:
                     self.bullets.remove(bullet)
+        collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, False, True)
+        if not self.aliens:
+            #destroy existing bullets and create new fleet.
+            self.bullets.empty()
+            self._create_fleet()
     def _check_events(self):
         """respond to keypresses and mouse events"""
         for event in pygame.event.get():
