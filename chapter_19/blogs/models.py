@@ -1,3 +1,10 @@
 from django.db import models
 
-# Create your models here.
+class Blog(models.Model):
+    """Model for overall blog"""
+    text = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        """Return a string representation of the model"""
+        return self.text
