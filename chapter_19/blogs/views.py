@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 
-from .models import Blog
+from .models import Blog, Post
 from .forms import BlogForm, PostForm
+
 
 def index(request):
     """Home page for Blog"""
     return render(request, 'blogs/index.html')
+
 
 def blogs(request):
     """Show all blogs"""
@@ -13,12 +15,14 @@ def blogs(request):
     context = {'blogs': blogs}
     return render(request, 'blogs/blogs.html', context)
 
+
 def blog(request, blog_id):
     """Show a single blog and all posts"""
     blog = Blog.objects.get(id=blog_id)
     posts = blog.post_set.order_by('-date_added')
     context = {'blog': blog, 'posts': posts}
     return render(request, 'blogs/blog.html', context)
+
 
 def new_blog(request):
     """Create a new blog"""
@@ -35,6 +39,7 @@ def new_blog(request):
     # Display blank or invalid form
     context = {'form': form}
     return render(request, 'blogs/new_blog.html', context)
+
 
 def new_post(request, blog_id):
     """Create a new post in a specific blog"""
@@ -55,3 +60,22 @@ def new_post(request, blog_id):
     # Display blank or invalid form
     context = {'blog': blog, 'form': form}
     return render(request, 'blogs/new_post.html', context)
+
+
+def edit_post(request, post_id):
+    """Edit an existing post"""
+    post = Post.objects.get(id=post_id)
+    blog = post.blog
+
+    if request.method != 'POST':
+        # Initial request; pre-fill with current post
+        form = PostForm(instance=post)
+    else:
+        # POST data submitted (haha); process data
+        form = PostForm(instance=post, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('blogs:blog', blog_id=blog.id)
+        
+    context = {'post': post, 'blog': blog, 'form': form}
+    return render(request, 'blogs/edit_post.html', context)
