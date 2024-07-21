@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
-from .models import Blog, Post
-from .forms import BlogForm
+from .models import Blog
+from .forms import BlogForm, PostForm
 
 def index(request):
     """Home page for Blog"""
@@ -35,3 +35,23 @@ def new_blog(request):
     # Display blank or invalid form
     context = {'form': form}
     return render(request, 'blogs/new_blog.html', context)
+
+def new_post(request, blog_id):
+    """Create a new post in a specific blog"""
+    blog = Blog.objects.get(id=blog_id)
+
+    if request.method != 'POST':
+        # No data submitted; create blank form
+        form = PostForm()
+    else:
+        # POST data submitted; process data
+        form = PostForm(data=request.POST)
+        if form.is_valid():
+            new_post = form.save(commit=False)
+            new_post.blog = blog
+            new_post.save()
+            return redirect('blogs:blog', blog_id=blog_id)
+    
+    # Display blank or invalid form
+    context = {'blog': blog, 'form': form}
+    return render(request, 'blogs/new_post.html', context)
