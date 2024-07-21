@@ -11,3 +11,10 @@ def blogs(request):
     blogs = Blog.objects.order_by('date_added')
     context = {'blogs': blogs}
     return render(request, 'blogs/blogs.html', context)
+
+def blog(request, blog_id):
+    """Show a single blog and all entries"""
+    blog = Blog.objects.get(id=blog_id)
+    entries = blog.entry_set.order_by('-date_added')
+    context = {'blog': blog, 'entries': entries}
+    return render(request, 'blogs/blog.html', context)

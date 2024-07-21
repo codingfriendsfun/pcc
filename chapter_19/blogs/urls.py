@@ -9,6 +9,8 @@ app_name = 'blogs'
 urlpatterns = [
     # Home page
     path('', views.index, name='index'),
-    # Page that shows all blog entries
-    path('blogs/', views.blogs, name='blogs')
+    # Page that shows all blogs
+    path('blogs/', views.blogs, name='blogs'),
+    # Detail page for a blog 
+    path('blogs/<int:blog_id>/', views.blog, name='blog')
 ]
