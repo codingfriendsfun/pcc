@@ -6,10 +6,10 @@
 
     <p>Posts:</p>
     <ul>
-        {% for entry in entries %}
+        {% for post in posts %}
             <li>
-                <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
-                <p>{{ entry.text|linebreaks }}</p>
+                <p>{{ post.date_added|date:'M d, Y H:i' }}</p>
+                <p>{{ post.text|linebreaks }}</p>
             </li>
         {% empty %}
             <li>There are no entries for this blog yet.</li>

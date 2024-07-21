@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Blog
+from .models import Blog, Post
 
 def index(request):
     """Home page for Blog"""
@@ -13,8 +13,8 @@ def blogs(request):
     return render(request, 'blogs/blogs.html', context)
 
 def blog(request, blog_id):
-    """Show a single blog and all entries"""
+    """Show a single blog and all posts"""
     blog = Blog.objects.get(id=blog_id)
-    entries = blog.entry_set.order_by('-date_added')
-    context = {'blog': blog, 'entries': entries}
+    posts = blog.post_set.order_by('-date_added')
+    context = {'blog': blog, 'posts': posts}
     return render(request, 'blogs/blog.html', context)

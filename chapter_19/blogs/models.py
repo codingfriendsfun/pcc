@@ -10,15 +10,15 @@ class Blog(models.Model):
         return self.text
     
 
-class Entry(models.Model):
-    """Individual blog entry"""
+class Post(models.Model):
+    """Individual blog post"""
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
     text = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
 
-    class Meta:
-        verbose_name_plural = 'entries'
-
     def __str__(self):
-        """Return simple string representing entry"""
-        return f"{self.text[:50]}..."
+        """Return simple string representing post"""
+        if len(self.text) > 50:
+            return f"{self.text[:50]}..."
+        else:
+            return self.text
